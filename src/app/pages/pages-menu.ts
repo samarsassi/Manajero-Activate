@@ -2,246 +2,132 @@ import { NbMenuItem } from '@nebular/theme';
 
 export const MENU_ITEMS: NbMenuItem[] = [
   {
-    title: 'E-commerce',
-    icon: 'shopping-cart-outline',
-    link: '/pages/dashboard',
-    home: true,
-  },
-  {
-    title: 'IoT Dashboard',
-    icon: 'home-outline',
-    link: '/pages/iot-dashboard',
-  },
-  {
-    title: 'FEATURES',
-    group: true,
-  },
-  {
-    title: 'Layout',
-    icon: 'layout-outline',
+    title: 'Agile Project Management',
+    icon: 'clipboard-outline',
     children: [
       {
-        title: 'Stepper',
-        link: '/pages/layout/stepper',
+        title: 'Scaled Agile Framework (SAFe)',
+        link: '/pages/agile/safe',
       },
       {
-        title: 'List',
-        link: '/pages/layout/list',
+        title: 'Agile Unified Process (AUP)',
+        link: '/pages/agile/aup',
       },
       {
-        title: 'Infinite List',
-        link: '/pages/layout/infinite-list',
+        title: 'Disciplined Agile Delivery (DAD)',
+        link: '/pages/agile/dad',
       },
       {
-        title: 'Accordion',
-        link: '/pages/layout/accordion',
+        title: 'Nexus',
+        link: '/pages/agile/nexus',
       },
       {
-        title: 'Tabs',
-        pathMatch: 'prefix',
-        link: '/pages/layout/tabs',
+        title: 'Rapid Application Development (RAD)',
+        link: '/pages/agile/rad',
+      },
+      {
+        title: 'Test-Driven Development (TDD)',
+        link: '/pages/agile/tdd',
+      },
+      {
+        title: 'Behavior-Driven Development (BDD)',
+        link: '/pages/agile/bdd',
+      },
+      {
+        title: 'Continuous Integration (CI) Devops - Group 1',
+        link: '/pages/agile/ci-devops-group1',
+      },
+      {
+        title: 'Continuous Integration (CI) Devops - Group 2',
+        link: '/pages/agile/ci-devops-group2',
+      },
+      {
+        title: 'Continuous Deployment (CD) Devops',
+        link: '/pages/agile/cd-devops',
+      },
+      {
+        title: 'Lean Six Sigma (LSS)',
+        link: '/pages/agile/lss',
+      },
+      {
+        title: 'Scrum Poker Online Group 1',
+        link: '/pages/agile/scrum-poker-group1',
+      },
+      {
+        title: 'Scrum Poker Online Group 2',
+        link: '/pages/agile/scrum-poker-group2',
       },
     ],
   },
   {
-    title: 'Forms',
-    icon: 'edit-2-outline',
+    title: 'Lean Project Management',
+    icon: 'activity-outline',
     children: [
       {
-        title: 'Form Inputs',
-        link: '/pages/forms/inputs',
+        title: 'Value Stream Mapping (VSM)',
+        link: '/pages/lean/vsm',
       },
       {
-        title: 'Form Layouts',
-        link: '/pages/forms/layouts',
+        title: '5S (Sort, Set in Order, Shine, Standardize, Sustain)',
+        link: '/pages/lean/5s',
       },
       {
-        title: 'Buttons',
-        link: '/pages/forms/buttons',
+        title: 'Just-in-Time (JIT)',
+        link: '/pages/lean/jit',
       },
       {
-        title: 'Datepicker',
-        link: '/pages/forms/datepicker',
+        title: 'Kaizen (Continuous Improvement)',
+        link: '/pages/lean/kaizen',
+      },
+      {
+        title: 'Poka-Yoke (Error Proofing)',
+        link: '/pages/lean/poka-yoke',
+      },
+      {
+        title: 'Heijunka (Production Leveling)',
+        link: '/pages/lean/heijunka',
+      },
+      {
+        title: 'Andon (Visual Management)',
+        link: '/pages/lean/andon',
+      },
+      {
+        title: 'Gemba (Go to the Source)',
+        link: '/pages/lean/gemba',
+      },
+      {
+        title: 'SMED (Single-Minute Exchange of Die)',
+        link: '/pages/lean/smed',
+      },
+      {
+        title: 'Value-Added Analysis',
+        link: '/pages/lean/value-added-analysis',
+      },
+      {
+        title: 'Total Productive Maintenance (TPM)',
+        link: '/pages/lean/tpm',
+      },
+      {
+        title: 'Jidoka (Autonomation)',
+        link: '/pages/lean/jidoka',
+      },
+      {
+        title: 'Root Cause Analysis (Ishikawa)',
+        link: '/pages/lean/root-cause-analysis',
+      },
+      {
+        title: 'A3 Problem Solving',
+        link: '/pages/lean/a3-problem-solving',
+      },
+      {
+        title: 'Hoshin Kanri (Policy Deployment)',
+        link: '/pages/lean/hoshin-kanri',
+      },
+      {
+        title: 'Theory of Constraints (TOC)',
+        link: '/pages/lean/toc',
       },
     ],
   },
-  {
-    title: 'UI Features',
-    icon: 'keypad-outline',
-    link: '/pages/ui-features',
-    children: [
-      {
-        title: 'Grid',
-        link: '/pages/ui-features/grid',
-      },
-      {
-        title: 'Icons',
-        link: '/pages/ui-features/icons',
-      },
-      {
-        title: 'Typography',
-        link: '/pages/ui-features/typography',
-      },
-      {
-        title: 'Animated Searches',
-        link: '/pages/ui-features/search-fields',
-      },
-    ],
-  },
-  {
-    title: 'Modal & Overlays',
-    icon: 'browser-outline',
-    children: [
-      {
-        title: 'Dialog',
-        link: '/pages/modal-overlays/dialog',
-      },
-      {
-        title: 'Window',
-        link: '/pages/modal-overlays/window',
-      },
-      {
-        title: 'Popover',
-        link: '/pages/modal-overlays/popover',
-      },
-      {
-        title: 'Toastr',
-        link: '/pages/modal-overlays/toastr',
-      },
-      {
-        title: 'Tooltip',
-        link: '/pages/modal-overlays/tooltip',
-      },
-    ],
-  },
-  {
-    title: 'Extra Components',
-    icon: 'message-circle-outline',
-    children: [
-      {
-        title: 'Calendar',
-        link: '/pages/extra-components/calendar',
-      },
-      {
-        title: 'Progress Bar',
-        link: '/pages/extra-components/progress-bar',
-      },
-      {
-        title: 'Spinner',
-        link: '/pages/extra-components/spinner',
-      },
-      {
-        title: 'Alert',
-        link: '/pages/extra-components/alert',
-      },
-      {
-        title: 'Calendar Kit',
-        link: '/pages/extra-components/calendar-kit',
-      },
-      {
-        title: 'Chat',
-        link: '/pages/extra-components/chat',
-      },
-    ],
-  },
-  {
-    title: 'Maps',
-    icon: 'map-outline',
-    children: [
-      {
-        title: 'Google Maps',
-        link: '/pages/maps/gmaps',
-      },
-      {
-        title: 'Leaflet Maps',
-        link: '/pages/maps/leaflet',
-      },
-      {
-        title: 'Bubble Maps',
-        link: '/pages/maps/bubble',
-      },
-      {
-        title: 'Search Maps',
-        link: '/pages/maps/searchmap',
-      },
-    ],
-  },
-  {
-    title: 'Charts',
-    icon: 'pie-chart-outline',
-    children: [
-      {
-        title: 'Echarts',
-        link: '/pages/charts/echarts',
-      },
-      {
-        title: 'Charts.js',
-        link: '/pages/charts/chartjs',
-      },
-      {
-        title: 'D3',
-        link: '/pages/charts/d3',
-      },
-    ],
-  },
-  {
-    title: 'Editors',
-    icon: 'text-outline',
-    children: [
-      {
-        title: 'TinyMCE',
-        link: '/pages/editors/tinymce',
-      },
-      {
-        title: 'CKEditor',
-        link: '/pages/editors/ckeditor',
-      },
-    ],
-  },
-  {
-    title: 'Tables & Data',
-    icon: 'grid-outline',
-    children: [
-      {
-        title: 'Smart Table',
-        link: '/pages/tables/smart-table',
-      },
-      {
-        title: 'Tree Grid',
-        link: '/pages/tables/tree-grid',
-      },
-    ],
-  },
-  {
-    title: 'Miscellaneous',
-    icon: 'shuffle-2-outline',
-    children: [
-      {
-        title: '404',
-        link: '/pages/miscellaneous/404',
-      },
-    ],
-  },
-  {
-    title: 'Auth',
-    icon: 'lock-outline',
-    children: [
-      {
-        title: 'Login',
-        link: '/auth/login',
-      },
-      {
-        title: 'Register',
-        link: '/auth/register',
-      },
-      {
-        title: 'Request Password',
-        link: '/auth/request-password',
-      },
-      {
-        title: 'Reset Password',
-        link: '/auth/reset-password',
-      },
-    ],
-  },
+
 ];
