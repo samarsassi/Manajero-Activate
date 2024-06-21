@@ -1,0 +1,113 @@
+<div class="documentation-container">
+    <h1>SAP Activate Phases</h1>
+    
+    <section id="phases">
+        <div class="svg-container">
+            <section id="image-container">
+                <img src="assets/images/Activate steps.png" alt="Image for Build Smart, Run Simple" class="image animated-image" id="build-smart-image">
+              </section>
+              <br>
+              <br>
+            <svg viewBox="0 0 500 500" width="400" height="400">
+                <defs>
+                    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="5.5" refY="3.5" orient="auto">
+                        <polygon points="0 0, 10 3.5, 0 7" fill="#0070d2"/>
+                    </marker>
+                </defs>
+                <path class="flash-animation" d="M200,50 A150,150 0 0,1 350,200" fill="none" stroke="#0070d2" stroke-width="6" marker-end="url(#arrowhead)" />
+  
+  
+                <path class="flash-animation" d="M200,50 A150,150 0 0,1 350,200" fill="none" stroke="#0070d2" stroke-width="6" marker-end="url(#arrowhead)" transform="rotate(60 200 200)" />
+                <path class="flash-animation" d="M200,50 A150,150 0 0,1 350,200" fill="none" stroke="#0070d2" stroke-width="6" marker-end="url(#arrowhead)" transform="rotate(120 200 200)" />
+                <path class="flash-animation" d="M200,50 A150,150 0 0,1 350,200" fill="none" stroke="#0070d2" stroke-width="6" marker-end="url(#arrowhead)" transform="rotate(180 200 200)" />
+                <path class="flash-animation" d="M200,50 A150,150 0 0,1 350,200" fill="none" stroke="#0070d2" stroke-width="6" marker-end="url(#arrowhead)" transform="rotate(240 200 200)" />
+                <path class="flash-animation" d="M200,50 A150,150 0 0,1 350,200" fill="none" stroke="#0070d2" stroke-width="6" marker-end="url(#arrowhead)" transform="rotate(300 200 200)" />
+
+                <text x="220" y="30" text-anchor="middle" class="phase-text" (click)="selectPhase('prepare')">Prepare</text>
+                <text x="330" y="120" text-anchor="middle" class="phase-text" (click)="selectPhase('explore')">Explore</text>
+                <text x="330" y="280" text-anchor="middle" class="phase-text" (click)="selectPhase('realize')">Realize</text>
+                <text x="200" y="370" text-anchor="middle" class="phase-text" (click)="selectPhase('deploy')">Deploy</text>
+                <text x="70" y="280" text-anchor="middle" class="phase-text" (click)="selectPhase('run')">Run</text>
+                <text x="70" y="120" text-anchor="middle" class="phase-text" (click)="selectPhase('discover')">Discover</text>
+                
+                <text x="200" y="190" text-anchor="middle" class="center-text">SAP ACTIVATE</text>
+               <text x="200" y="210" text-anchor="middle" class="center-text">Methodology</text>
+               <text x="200" y="230" text-anchor="middle" class="center-text" style="font-size: 0.8em;">Build Smart, Run Simple</text>
+            </svg>
+        </div>
+        
+        <div class="phase-details">
+            <ng-container *ngIf="selectedPhase === 'discover'">
+                <h3>Discover</h3>
+                <p>Objective: Understand the project's scope and objectives.<br>
+                   Activities: Initial project planning, value assessment, and strategy alignment.</p>
+            </ng-container>
+            <ng-container *ngIf="selectedPhase === 'prepare'">
+                <h3>Prepare</h3>
+                <p>Objective: Set up the project infrastructure and prepare the project team.<br>
+                   Activities: Project kickoff, team onboarding, and initial system setup.</p>
+            </ng-container>
+            <ng-container *ngIf="selectedPhase === 'explore'">
+                <h3>Explore</h3>
+                <p>Objective: Validate business requirements and processes.<br>
+                   Activities: Conduct workshops, fit-to-standard analysis, and define the system design.</p>
+            </ng-container>
+            <ng-container *ngIf="selectedPhase === 'realize'">
+                <h3>Realize</h3>
+                <p>Objective: Configure and customize the SAP solution.<br>
+                   Activities: System configuration, development of custom objects, and iterative testing.</p>
+            </ng-container>
+            <ng-container *ngIf="selectedPhase === 'deploy'">
+                <h3>Deploy</h3>
+                <p>Objective: Transition to the live system.<br>
+                   Activities: Final data migration, cutover activities, and end-user training.</p>
+            </ng-container>
+            <ng-container *ngIf="selectedPhase === 'run'">
+                <h3>Run</h3>
+                <p>Objective: Operate and optimize the SAP system post-implementation.<br>
+                   Activities: System monitoring, support, and continuous improvement.</p>
+            </ng-container>
+        </div>
+    </section>
+    
+    <section id="why">
+        <h2>Why (Purpose)</h2>
+        <ul class="animated-text">
+            <li>Accelerate Implementations: By providing a clear and efficient framework, it reduces the time and effort required to deploy SAP solutions.</li>
+            <li>Ensure Best Practices: Leverage pre-configured business processes and best practices to ensure high-quality implementations.</li>
+            <li>Support Flexibility: Adapt to different project sizes, complexities, and deployment types (cloud, on-premise, hybrid).</li>
+        </ul>
+    </section>
+    
+    <section id="how">
+        <h2>How (Implementation Process)</h2>
+        <p>The implementation process involves:</p>
+        <ul class="animated-text">
+            <li>Best Practices: Utilizing SAP’s predefined processes to streamline implementation.</li>
+            <li>Guided Configuration: Step-by-step instructions to configure the system.</li>
+            <li>Agile Methodology: Using iterative sprints to develop and test the solution incrementally.</li>
+        </ul>
+        <h3>Tools and Techniques</h3>
+        <ul class="animated-text">
+            <li>SAP Solution Manager: For project management and documentation.</li>
+            <li>SAP Activate Roadmap Viewer: To visualize project phases and track progress.</li>
+            <li>SAP Best Practices Explorer: Access pre-configured scenarios and templates.</li>
+        </ul>
+        <img src="assets/images/Activate triangle.png" alt="Image for SAP Activate Methodology" class="image" style="width: 30%; /* Adjust width as needed */ border-radius: 10px;" id="activate-image">
+    </section>
+    
+    <section id="what-if">
+        <h2>What If (Testing and Validation)</h2>
+        <p>Testing and validation are critical to ensure the solution meets business requirements:</p>
+        <ul class="animated-text">
+            <li>User Acceptance Testing (UAT): Involve end-users to validate the system.</li>
+            <li>Integration Testing: Ensure all system components work together seamlessly.</li>
+            <li>Cutover Planning: Detailed plan to transition from the old system to the new SAP solution with minimal disruption.</li>
+        </ul>
+        <h3>Continuous Improvement</h3>
+        <ul class="animated-text">
+            <li>Feedback Loops: Collect and analyze feedback from users to improve the system.</li>
+            <li>Updates and Enhancements: Regularly update the system to incorporate new features and best practices.</li>
+        </ul>
+    </section>
+  </div>
