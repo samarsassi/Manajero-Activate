@@ -15,6 +15,10 @@ const routes: Routes = [{
       path: 'dashboard',
       component: ECommerceComponent,
     },
+    {
+      path: 'activate',
+      component: ActivateComponent,
+    },
   
     {
       path: 'iot-dashboard',
@@ -70,11 +74,7 @@ const routes: Routes = [{
       loadChildren: () => import('./miscellaneous/miscellaneous.module')
         .then(m => m.MiscellaneousModule),
     },
-    {
-      path: 'activate',
-      redirectTo: 'ActivateComponent',
-      pathMatch: 'full',
-    },
+   
     {
       path: '',
       redirectTo: 'dashboard',
