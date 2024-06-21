@@ -15,10 +15,7 @@ const routes: Routes = [{
       path: 'dashboard',
       component: ECommerceComponent,
     },
-    {
-    path: 'activate',
-    component: ActivateComponent,
-    },
+  
     {
       path: 'iot-dashboard',
       component: DashboardComponent,
@@ -75,7 +72,7 @@ const routes: Routes = [{
     },
     {
       path: 'activate',
-      redirectTo: 'ActivateDocComponent',
+      redirectTo: 'ActivateComponent',
       pathMatch: 'full',
     },
     {
