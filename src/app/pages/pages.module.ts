@@ -7,7 +7,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { ECommerceModule } from './e-commerce/e-commerce.module';
 import { PagesRoutingModule } from './pages-routing.module';
 import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
-import { ActivateDocComponent } from './activate-doc/activate-doc.component';
+import { ActivateComponent } from './activate/activate.component';
 
 @NgModule({
   imports: [
@@ -20,8 +20,7 @@ import { ActivateDocComponent } from './activate-doc/activate-doc.component';
   ],
   declarations: [
     PagesComponent,
-  
-    ActivateDocComponent,
+    ActivateComponent,
   ],
 })
 export class PagesModule {
