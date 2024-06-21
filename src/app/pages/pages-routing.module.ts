@@ -69,6 +69,11 @@ const routes: Routes = [{
         .then(m => m.MiscellaneousModule),
     },
     {
+      path: 'activate',
+      redirectTo: 'ActivateDocComponent',
+      pathMatch: 'full',
+    },
+    {
       path: '',
       redirectTo: 'dashboard',
       pathMatch: 'full',
