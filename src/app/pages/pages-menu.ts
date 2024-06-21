@@ -7,7 +7,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'Activate',
-        link: './pages/activate',
+        link: './activate',
       },
       {
         title: 'Scaled Agile Framework (SAFe)',
