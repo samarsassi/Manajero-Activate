@@ -1,0 +1,68 @@
+/* your-component.component.css */
+
+.container {
+  width: 100%;
+  max-width: 600px; /* Adjust width as per your layout */
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f7f7f7;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.example-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-field {
+  margin-bottom: 20px;
+}
+
+.form-field label {
+  font-weight: bold;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.form-field textarea,
+.form-field input[type="file"] {
+  width: calc(100% - 16px);
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.form-field input[type="file"] {
+  padding: 8px;
+  cursor: pointer;
+  background-color: #f9f9f9;
+}
+
+.btn-submit {
+  width: 100%;
+  max-width: 200px;
+  margin: 20px auto 0;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+  background-color: #0056b3;
+}
+
+.error-message {
+  color: #dc3545; /* Red color for error messages */
+  font-size: 14px;
+  margin-top: 4px;
+}

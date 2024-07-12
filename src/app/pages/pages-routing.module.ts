@@ -6,6 +6,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ECommerceComponent } from './e-commerce/e-commerce.component';
 import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
 import { ActivateComponent } from './activate/activate.component';
+import { ExplorePhaseComponent } from './add-explore-phase/explore-phase.component';
+import { PhaseExplorerComponent } from './phase-explorer/phase-explorer.component';
 
 const routes: Routes = [{
   path: '',
@@ -15,6 +17,8 @@ const routes: Routes = [{
       path: 'dashboard',
       component: ECommerceComponent,
     },
+    {path:'explore_phase',component:ExplorePhaseComponent},
+    {path:'phase-explorer',component:PhaseExplorerComponent},
     {
     path: 'activate',
     component: ActivateComponent,

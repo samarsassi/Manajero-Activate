@@ -1,0 +1,128 @@
+<!-- your-component.component.html -->
+
+<div class="container">
+  <form class="example-form" #form="" (ngSubmit)="onSubmit(form)">
+    <div class="form-field">
+      <label for="finalizedBusinessProcesses">Processus métier finalisés</label>
+      <textarea id="finalizedBusinessProcesses" name="finalizedBusinessProcesses" 
+                placeholder="Describe approved operational workflows for SAP."
+                required minlength="10" maxlength="500" #finalizedBusinessProcesses=""></textarea>
+      <div *ngIf="formSubmitted && finalizedBusinessProcesses.errors?.required" class="error-message">
+        Processus métier finalisés is required.
+      </div>
+      <div *ngIf="formSubmitted && finalizedBusinessProcesses.errors?.minlength" class="error-message">
+        Minimum 10 characters required.
+      </div>
+      <div *ngIf="formSubmitted && finalizedBusinessProcesses.errors?.maxlength" class="error-message">
+        Maximum 500 characters allowed.
+      </div>
+    </div>
+
+    <div class="form-field">
+      <label for="keyDeliverables">Produits livrables principaux</label>
+      <textarea id="keyDeliverables" name="keyDeliverables" 
+                required minlength="10" maxlength="500" #keyDeliverables=""></textarea>
+      <div *ngIf="formSubmitted && keyDeliverables.errors?.required" class="error-message">
+        Produits livrables principaux is required.
+      </div>
+      <div *ngIf="formSubmitted && keyDeliverables.errors?.minlength" class="error-message">
+        Minimum 10 characters required.
+      </div>
+      <div *ngIf="formSubmitted && keyDeliverables.errors?.maxlength" class="error-message">
+        Maximum 500 characters allowed.
+      </div>
+    </div>
+
+    <div class="form-field">
+      <label for="migrationModels">Modèles de migration standard</label>
+      <textarea id="migrationModels" name="migrationModels" 
+                required minlength="10" maxlength="500" #migrationModels=""></textarea>
+      <div *ngIf="formSubmitted && migrationModels.errors?.required" class="error-message">
+        Modèles de migration standard is required.
+      </div>
+      <div *ngIf="formSubmitted && migrationModels.errors?.minlength" class="error-message">
+        Minimum 10 characters required.
+      </div>
+      <div *ngIf="formSubmitted && migrationModels.errors?.maxlength" class="error-message">
+        Maximum 500 characters allowed.
+      </div>
+    </div>
+
+    <div class="form-field">
+      <label for="standardProcessExecution">Exécution des processus standard par le client</label>
+      <textarea id="standardProcessExecution" name="standardProcessExecution" 
+                required minlength="10" maxlength="500" #standardProcessExecution=""></textarea>
+      <div *ngIf="formSubmitted && standardProcessExecution.errors?.required" class="error-message">
+        Exécution des processus standard par le client is required.
+      </div>
+      <div *ngIf="formSubmitted && standardProcessExecution.errors?.minlength" class="error-message">
+        Minimum 10 characters required.
+      </div>
+      <div *ngIf="formSubmitted && standardProcessExecution.errors?.maxlength" class="error-message">
+        Maximum 500 characters allowed.
+      </div>
+    </div>
+
+    <div class="form-field">
+      <label for="additionalObjects">Objets supplémentaires (WRICEF)</label>
+      <textarea id="additionalObjects" name="additionalObjects" 
+                required minlength="10" maxlength="500" #additionalObjects=""></textarea>
+      <div *ngIf="formSubmitted && additionalObjects.errors?.required" class="error-message">
+        Objets supplémentaires (WRICEF) is required.
+      </div>
+      <div *ngIf="formSubmitted && additionalObjects.errors?.minlength" class="error-message">
+        Minimum 10 characters required.
+      </div>
+      <div *ngIf="formSubmitted && additionalObjects.errors?.maxlength" class="error-message">
+        Maximum 500 characters allowed.
+      </div>
+    </div>
+
+    <div class="form-field">
+      <label for="configurationValues">Valeurs de configuration</label>
+      <textarea id="configurationValues" name="configurationValues" 
+                required minlength="10" maxlength="500" #configurationValues=""></textarea>
+      <div *ngIf="formSubmitted && configurationValues.errors?.required" class="error-message">
+        Valeurs de configuration is required.
+      </div>
+      <div *ngIf="formSubmitted && configurationValues.errors?.minlength" class="error-message">
+        Minimum 10 characters required.
+      </div>
+      <div *ngIf="formSubmitted && configurationValues.errors?.maxlength" class="error-message">
+        Maximum 500 characters allowed.
+      </div>
+    </div>
+
+    <div class="form-field">
+      <label for="backlogDocument">Document Backlog</label>
+      <input type="file" id="backlogDocument" name="backlogDocument" 
+             (change)="handleFileInput($event)"
+             accept=".doc,.docx,.pdf" required>
+      <div *ngIf="formSubmitted && form.backlogDocument?.errors?.required" class="error-message">
+        Document Backlog is required.
+      </div>
+      <div *ngIf="formSubmitted && form.backlogDocument?.errors?.accept" class="error-message">
+        Accepted file types: .doc, .docx, .pdf
+      </div>
+    </div>
+
+    <div class="form-field">
+      <label for="scenarioValidation">Validation des scénarios prédéfinis</label>
+      <textarea id="scenarioValidation" name="scenarioValidation" 
+                required minlength="10" maxlength="500" #scenarioValidation=""></textarea>
+      <div *ngIf="formSubmitted && scenarioValidation.errors?.required" class="error-message">
+        Validation des scénarios prédéfinis is required.
+      </div>
+      <div *ngIf="formSubmitted && scenarioValidation.errors?.minlength" class="error-message">
+        Minimum 10 characters required.
+      </div>
+      <div *ngIf="formSubmitted && scenarioValidation.errors?.maxlength" class="error-message">
+        Maximum 500 characters allowed.
+      </div>
+    </div>
+
+    <button type="submit" class="btn-submit">Submit</button>
+    <button routerLink="/Activate" class="btn-submit">Back</button>
+
+  </form>
+</div>

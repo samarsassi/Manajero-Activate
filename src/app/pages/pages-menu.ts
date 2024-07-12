@@ -7,11 +7,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'Activate',
-        link: './pages/activate',
+        link: './activate',
       },
       {
         title: 'Scaled Agile Framework (SAFe)',
-        link: '/pages/agile/safe',
+        link: './safe',
       },
       {
         title: 'Agile Unified Process (AUP)',

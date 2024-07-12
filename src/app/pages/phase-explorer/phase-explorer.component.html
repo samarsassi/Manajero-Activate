@@ -1,0 +1,82 @@
+<div class="container mt-4">
+    <h1 class="text-center mb-4">Phases d'Exploration</h1>
+    <div class="text-center mb-4">
+      <button (click)="openModal()" class="btn btn-primary">Ajouter une nouvelle Phase</button>
+    </div>
+    <div class="row">
+      <div *ngFor="let phase of explorephases" class="col-md-4 col-sm-6 mb-4">
+        <div class="card" (click)="toggleDetails(phase)">
+          <div class="card-body">
+            <h5 class="card-title">{{ phase.finalizedBusinessProcesses }}</h5>
+            <p class="card-text"><strong>Livrables Clés:</strong> {{ phase.keyDeliverables }}</p>
+            <p class="card-text"><strong>Modèles de Migration:</strong> {{ phase.migrationModels }}</p>
+            <p class="card-text"><strong>Exécution de Processus Standard:</strong> {{ phase.standardProcessExecution }}</p>
+            <div [ngClass]="{'details': true, 'show': phase.showDetails}">
+              <p class="card-text"><strong>Objets Additionnels:</strong> {{ phase.additionalObjects }}</p>
+              <p class="card-text"><strong>Valeurs de Configuration:</strong> {{ phase.configurationValues }}</p>
+              <p class="card-text"><strong>Document de Backlog:</strong> {{ phase.backlogDocument }}</p>
+              <p class="card-text"><strong>Validation de Scénario:</strong> {{ phase.scenarioValidation }}</p>
+            </div>
+            <div class="d-flex justify-content-between mt-3">
+              <button (click)="selectExplorePhase(phase); $event.stopPropagation()" class="btn btn-warning btn-sm">Éditer</button>
+              <button (click)="deleteExplorePhase(phase.id); $event.stopPropagation()" class="btn btn-danger btn-sm">Supprimer</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Modal pour Ajouter/Éditer une Phase d'Exploration -->
+    <div *ngIf="showphase" class="modal" tabindex="-1" role="dialog" style="display: block;">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">{{ selectedExplorePhase ? 'Éditer' : 'Ajouter' }} une Phase d'Exploration</h5>
+            <button type="button" class="close" (click)="closeModal()" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form (ngSubmit)="addOrUpdateexplorephase()" #explorationPhaseForm="ngForm">
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="finalizedBusinessProcesses">Processus Métiers Finalisés</label>
+                <input type="text" class="form-control" id="finalizedBusinessProcesses" [(ngModel)]="newExplorerPhase.finalizedBusinessProcesses" name="finalizedBusinessProcesses" required>
+              </div>
+              <div class="form-group">
+                <label for="keyDeliverables">Livraisons Clés</label>
+                <input type="text" class="form-control" id="keyDeliverables" [(ngModel)]="newExplorerPhase.keyDeliverables" name="keyDeliverables" required>
+              </div>
+              <div class="form-group">
+                <label for="migrationModels">Modèles de Migration</label>
+                <input type="text" class="form-control" id="migrationModels" [(ngModel)]="newExplorerPhase.migrationModels" name="migrationModels" required>
+              </div>
+              <div class="form-group">
+                <label for="standardProcessExecution">Exécution de Processus Standard</label>
+                <input type="text" class="form-control" id="standardProcessExecution" [(ngModel)]="newExplorerPhase.standardProcessExecution" name="standardProcessExecution" required>
+              </div>
+              <div class="form-group">
+                <label for="additionalObjects">Objets Additionnels</label>
+                <textarea class="form-control" id="additionalObjects" [(ngModel)]="newExplorerPhase.additionalObjects" name="additionalObjects" required></textarea>
+              </div>
+              <div class="form-group">
+                <label for="configurationValues">Valeurs de Configuration</label>
+                <textarea class="form-control" id="configurationValues" [(ngModel)]="newExplorerPhase.configurationValues" name="configurationValues" required></textarea>
+              </div>
+              <div class="form-group">
+                <label for="backlogDocument">Document de Backlog</label>
+                <textarea class="form-control" id="backlogDocument" [(ngModel)]="newExplorerPhase.backlogDocument" name="backlogDocument" required></textarea>
+              </div>
+              <div class="form-group">
+                <label for="scenarioValidation">Validation de Scénario</label>
+                <textarea class="form-control" id="scenarioValidation" [(ngModel)]="newExplorerPhase.scenarioValidation" name="scenarioValidation" required></textarea>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary" [disabled]="explorationPhaseForm.invalid">{{ selectedExplorePhase ? 'Mettre à Jour' : 'Ajouter' }}</button>
+              <button type="button" class="btn btn-secondary" routerLink="../activate">Fermer</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
