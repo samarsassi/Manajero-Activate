@@ -1,0 +1,57 @@
+.container {
+    margin-top: 20px;
+  }
+  
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Pour espacer les cartes */
+  }
+  
+  .card {
+    margin: 10px;
+    flex: 1 0 300px; /* Ajuste la taille des cartes */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Pour que les boutons Edit/Delete soient en bas */
+    min-height: 200px; /* Hauteur minimum des cartes */
+    max-width: 300px; /* Largeur maximum des cartes */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 5px;
+    overflow: hidden; /* Pour éviter que le contenu dépasse les limites de la carte */
+    cursor: pointer; /* Change le curseur pour indiquer que la carte est cliquable */
+  }
+  
+  .card-body {
+    padding: 10px; /* Ajouter du padding */
+  }
+  
+  .card-title {
+    font-size: 1.2rem;
+  }
+  
+  .card-text {
+    font-size: 0.9rem;
+    text-align: left;
+  }
+  
+  .details {
+    display: none; /* Par défaut, cacher les détails */
+  }
+  
+  .details.show {
+    display: block; /* Afficher les détails lorsque l'état est basculé */
+  }
+  
+  /* Assurez-vous que les cartes ne débordent pas */
+  .col-md-4 {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  
+  /* Style pour le modal */
+  .modal-body {
+    max-height: 70vh; /* Limite la hauteur du corps du modal */
+    overflow-y: auto; /* Ajoute une barre de défilement verticale si nécessaire */
+  }
+  

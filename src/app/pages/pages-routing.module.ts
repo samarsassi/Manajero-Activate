@@ -6,6 +6,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ECommerceComponent } from './e-commerce/e-commerce.component';
 import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
 import { ActivateComponent } from './activate/activate.component';
+import { ProjectPreparationComponent } from './project-preparation/project-preparation.component';
 
 const routes: Routes = [{
   path: '',
@@ -18,6 +19,10 @@ const routes: Routes = [{
     {
       path: 'activate',
       component: ActivateComponent,
+    },
+    {
+      path: 'projectPreparation',
+      component: ProjectPreparationComponent,
     },
   
     {
