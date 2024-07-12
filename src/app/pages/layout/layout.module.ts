@@ -21,6 +21,8 @@ import { NewsPostComponent } from './infinite-list/news-post/news-post.component
 import { NewsPostPlaceholderComponent } from './infinite-list/news-post-placeholder/news-post-placeholder.component';
 import { AccordionComponent } from './accordion/accordion.component';
 import { NewsService } from './news.service';
+import { ActivateComponent } from '../activate/activate.component';
+import { ActivateModule } from '../activate/activate.module';
 
 @NgModule({
   imports: [
@@ -35,7 +37,7 @@ import { NewsService } from './news.service';
     NbListModule,
     NbAccordionModule,
     NbUserModule,
-    LayoutRoutingModule,
+    LayoutRoutingModule
   ],
   declarations: [
     LayoutComponent,
@@ -48,6 +50,7 @@ import { NewsService } from './news.service';
     InfiniteListComponent,
     NewsPostComponent,
     AccordionComponent,
+    
   ],
   providers: [
     NewsService,

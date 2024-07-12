@@ -8,6 +8,8 @@ import { ECommerceModule } from './e-commerce/e-commerce.module';
 import { PagesRoutingModule } from './pages-routing.module';
 import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
 import { ActivateComponent } from './activate/activate.component';
+import { NavPageModule } from './nav-page/nav-page.module';
+import { ActivateModule } from './activate/activate.module';
 
 @NgModule({
   imports: [
@@ -15,12 +17,15 @@ import { ActivateComponent } from './activate/activate.component';
     ThemeModule,
     NbMenuModule,
     DashboardModule,
+    NavPageModule,
     ECommerceModule,
     MiscellaneousModule,
+    ActivateModule
   ],
   declarations: [
     PagesComponent,
-    ActivateComponent,
+    
+    
   ],
 })
 export class PagesModule {
