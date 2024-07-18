@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { NbMenuModule } from '@nebular/theme';
+import { NbButtonModule, NbCardModule, NbCheckboxModule, NbIconModule, NbInputModule, NbLayoutModule, NbMenuModule, NbSelectModule, NbStepperModule, NbThemeModule } from '@nebular/theme';
 
 import { ThemeModule } from '../@theme/theme.module';
 import { PagesComponent } from './pages.component';
@@ -8,8 +8,12 @@ import { ECommerceModule } from './e-commerce/e-commerce.module';
 import { PagesRoutingModule } from './pages-routing.module';
 import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
 import { ActivateComponent } from './activate/activate.component';
+import { NavPageModule } from './nav-page/nav-page.module';
+import { ActivateModule } from './activate/activate.module';
 import { ProjectPreparationComponent } from './project-preparation/project-preparation.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SectionsComponent } from './sections/sections.component';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
 
 @NgModule({
   imports: [
@@ -17,14 +21,28 @@ import { FormsModule } from '@angular/forms';
     ThemeModule,
     NbMenuModule,
     DashboardModule,
+    NavPageModule,
     ECommerceModule,
     MiscellaneousModule,
-    FormsModule
+    ActivateModule,
+    FormsModule,
+    ReactiveFormsModule,
+
+    NbThemeModule.forRoot({ name: 'default' }),
+    NbLayoutModule,
+    NbCardModule,
+    NbStepperModule,
+    NbButtonModule,
+    NbInputModule,
+    NbSelectModule,
+    NbCheckboxModule,
+    NbIconModule,
+    NbEvaIconsModule,
   ],
   declarations: [
     PagesComponent,
-    ActivateComponent,
     ProjectPreparationComponent,
+    SectionsComponent,
   ],
 })
 export class PagesModule {

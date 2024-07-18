@@ -12,6 +12,7 @@ import { ThemeModule } from './@theme/theme.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
+import { NbCardModule } from '@nebular/theme';
 import {
   NbChatModule,
   NbDatepickerModule,
@@ -20,15 +21,21 @@ import {
   NbSidebarModule,
   NbToastrModule,
   NbWindowModule,
+
+  
+ 
   
   
   
 } from '@nebular/theme';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
+    FormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,

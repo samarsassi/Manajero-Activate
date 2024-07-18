@@ -6,7 +6,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ECommerceComponent } from './e-commerce/e-commerce.component';
 import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
 import { ActivateComponent } from './activate/activate.component';
+import { NavPageComponent } from './nav-page/nav-page.component';
 import { ProjectPreparationComponent } from './project-preparation/project-preparation.component';
+import { SectionsComponent } from './sections/sections.component';
 
 const routes: Routes = [{
   path: '',
@@ -17,12 +19,20 @@ const routes: Routes = [{
       component: ECommerceComponent,
     },
     {
+      path: 'nav',
+      component: NavPageComponent,
+    },
+    {
       path: 'activate',
       component: ActivateComponent,
     },
     {
       path: 'projectPreparation',
       component: ProjectPreparationComponent,
+    },
+    {
+      path: 'section',
+      component: SectionsComponent,
     },
   
     {
