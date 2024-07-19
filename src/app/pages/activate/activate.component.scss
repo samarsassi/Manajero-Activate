@@ -58,9 +58,15 @@ button:hover {
 }
 
 .svg-container {
-    text-align: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
+  width: 100%;
+  max-width: 500px; /* Optional: Set a maximum width for larger screens */
+  margin: auto; /* Center the SVG horizontally */
+}
+
+.responsive-svg {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 .phase-text {
@@ -238,6 +244,161 @@ textarea {
     display: block;
     margin-bottom: 10px;
   }
-  .checkbox-radio .row {
+  .checkbox-radio .rowDiscover {
     margin-bottom: 10px;
   }
+
+
+  //Preparation phase
+
+  .container {
+    margin-top: 20px;
+  }
+  
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Pour espacer les cartes */
+  }
+  
+  .card {
+    margin: 10px;
+    flex: 1 0 300px; /* Ajuste la taille des cartes */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Pour que les boutons Edit/Delete soient en bas */
+    min-height: 200px; /* Hauteur minimum des cartes */
+    max-width: 300px; /* Largeur maximum des cartes */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 5px;
+    overflow: hidden; /* Pour éviter que le contenu dépasse les limites de la carte */
+    cursor: pointer; /* Change le curseur pour indiquer que la carte est cliquable */
+  }
+  
+  .card-body {
+    padding: 10px; /* Ajouter du padding */
+  }
+  
+  .card-title {
+    font-size: 1.2rem;
+  }
+  
+  .card-text {
+    font-size: 0.9rem;
+    text-align: left;
+  }
+  
+  .details {
+    display: none; /* Par défaut, cacher les détails */
+  }
+  
+  .details.show {
+    display: block; /* Afficher les détails lorsque l'état est basculé */
+  }
+  
+  /* Assurez-vous que les cartes ne débordent pas */
+  .col-md-4 {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  
+ 
+.modal-body {
+    max-height: 70vh; /* Limit the height of the modal body */
+    overflow-y: auto; /* Add vertical scroll if necessary */
+    padding: 15px; /* Add padding for better readability */
+}
+
+
+//////////////////////////
+
+
+///////Explore Phase
+
+/* your-component.component.css */
+
+.containerEx {
+    width: 100%;
+    max-width: 600px; /* Adjust width as per your layout */
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .example-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-field {
+    margin-bottom: 20px;
+  }
+  
+  .form-field label {
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: block;
+  }
+  
+  .form-field textarea,
+  .form-field input[type="file"] {
+    width: calc(100% - 16px);
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  .form-field input[type="file"] {
+    padding: 8px;
+    cursor: pointer;
+    background-color: #f9f9f9;
+  }
+  
+  .btn-submit {
+    width: 100%;
+    max-width: 200px;
+    margin: 20px auto 0;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-submit:hover {
+    background-color: #0056b3;
+  }
+  
+  .error-message {
+    color: #dc3545; /* Red color for error messages */
+    font-size: 14px;
+    margin-top: 4px;
+  }
+
+
+
+  /////////////////////
+
+  .editpage-button {
+    margin-left: 10px;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.editpage-button:hover {
+    background-color: #0056b3;
+}
+

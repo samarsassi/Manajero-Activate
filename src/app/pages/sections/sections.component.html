@@ -1,0 +1,69 @@
+<div>
+
+    <div *ngFor="let section of sections">
+    <nb-flip-card>
+        <nb-card-front>
+            <nb-card>
+                <nb-card-body>
+
+                <h2>{{ section.title }}</h2>
+                <br>
+                <p>{{ section.content }}</p>
+                <br>
+                <img [src]="section.imageUrl" alt="{{ section.title }}" style="max-width: 200px; max-height: 200px;" />
+             
+                </nb-card-body>
+                
+            </nb-card>
+        </nb-card-front>
+        <nb-card-back>
+            <nb-card style="background-color: rgba(56, 56, 56, 0.387);">
+              <nb-card-body>
+                <div class="button-container">
+                  <button class="button edit-button" (click)="editSection(section)">Edit</button>
+                  <button class="button delete-button" (click)="deleteSection(section.id)">Delete</button>
+                </div>
+                
+
+                <form *ngIf="notauth" [formGroup]="sectionForm" (ngSubmit)="onSubmit()">
+
+                  <input formControlName="id" type="hidden" />
+                  <div class="form-container">
+                    <div class="form-field">
+                      <label for="title">Title</label>
+                      <input id="title" formControlName="title" type="text" placeholder="Enter title" />
+                    </div>
+                    <div class="form-field">
+                      <label for="content">Content</label>
+                      <textarea id="content" formControlName="content" placeholder="Enter content"></textarea>
+                    </div>
+                  
+                  
+                  <div class="form-field">
+                    <label for="image">Select Image</label>
+                    <input id="image" type="file" (change)="onFileSelect($event)"/>
+                  </div>
+                  <div *ngIf="previewUrl">
+                    <img [src]="previewUrl" alt="Image Preview" style="max-width: 100px; max-height: 100px;" />
+                  </div>
+                  <button class="button save-button" type="submit">Save</button>
+                  </div>
+                </form>
+              </nb-card-body>
+            </nb-card>
+        </nb-card-back>
+    </nb-flip-card>
+   
+
+    </div>
+  <br>
+  <div class="col-md-12 col-lg-6 col-xxxl-3">
+      <nb-card-header>Create more sections</nb-card-header>
+      <nb-card-body class="result-from-dialog">
+        <button class="add-button" (click)="open()">+</button>
+      </nb-card-body>
+    
+  </div>
+
+</div>
+  
