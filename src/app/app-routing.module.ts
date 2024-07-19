@@ -8,6 +8,7 @@ import {
   NbRequestPasswordComponent,
   NbResetPasswordComponent,
 } from '@nebular/auth';
+import { SectionsComponent } from './pages/sections/sections.component';
 
 export const routes: Routes = [
   {
@@ -16,6 +17,7 @@ export const routes: Routes = [
       .then(m => m.PagesModule),
   },
   {
+    
     path: 'auth',
     component: NbAuthComponent,
     children: [
@@ -46,7 +48,6 @@ export const routes: Routes = [
     ],
   },
   { path: '', redirectTo: 'pages', pathMatch: 'full' },
-  { path: '**', redirectTo: 'pages' },
 ];
 
 const config: ExtraOptions = {

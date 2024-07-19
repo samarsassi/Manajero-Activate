@@ -6,14 +6,26 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ECommerceComponent } from './e-commerce/e-commerce.component';
 import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
 import { ActivateComponent } from './activate/activate.component';
+import { NavPageComponent } from './nav-page/nav-page.component';
+import { SectionsComponent } from './sections/sections.component';
 
-const routes: Routes = [{
+const routes: Routes = [
+  { path: 'pages/edit', component: SectionsComponent },
+  {
   path: '',
   component: PagesComponent,
   children: [
     {
       path: 'dashboard',
       component: ECommerceComponent,
+    },
+    {
+      path: 'edit',
+      component: SectionsComponent,
+    },
+    {
+      path: 'nav',
+      component: NavPageComponent,
     },
     {
     path: 'activate',

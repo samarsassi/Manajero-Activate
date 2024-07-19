@@ -1,0 +1,29 @@
+<nb-card>
+    <nb-card-header>Add New Section</nb-card-header>
+    <nb-card-body>
+      <form [formGroup]="sectionForm" (ngSubmit)="onSubmit()">
+        <div>
+          <label for="title">Title</label>
+          <input id="title" formControlName="title" nbInput placeholder="Enter title" />
+        </div>
+        <div>
+          <label for="content">Content</label>
+          <textarea id="content" formControlName="content" nbInput placeholder="Enter content"></textarea>
+        </div>
+        <div>
+          <label for="image">Select Image</label>
+          <input id="image" type="file" (change)="onFileSelect($event)" />
+        </div>
+        <div *ngIf="previewUrl">
+          <img [src]="previewUrl" alt="Image Preview" style="max-width: 100px; max-height: 100px;" />
+        </div>
+      </form>
+    </nb-card-body>
+    <nb-card-footer>
+      <div class="form-actions">
+        <button nbButton status="danger" (click)="cancel()">Cancel</button>
+        <button nbButton status="success" (click)="onSubmit()">Submit</button>
+      </div>
+    </nb-card-footer>
+  </nb-card>
+  
