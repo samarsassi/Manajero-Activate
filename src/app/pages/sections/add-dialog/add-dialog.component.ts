@@ -21,8 +21,8 @@ export class AddDialogComponent {
     private router: Router
   ) {
     this.sectionForm = this.fb.group({
-      title: ['', Validators.required],
-      content: ['', Validators.required],
+      title: ['', [Validators.required, Validators.minLength(5)]],
+      content: ['', [Validators.required, Validators.minLength(10)]],
       imageUrl: ['']
     });
   }
