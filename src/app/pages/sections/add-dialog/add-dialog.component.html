@@ -5,24 +5,37 @@
         <div>
           <label for="title">Title</label>
           <input id="title" formControlName="title" nbInput placeholder="Enter title" />
+          <div *ngIf="sectionForm.get('title')?.invalid && (sectionForm.get('title')?.dirty || sectionForm.get('title')?.touched)">
+            <div *ngIf="sectionForm.get('title')?.errors?.required" style="color: red;">Title is required.</div>
+            <div *ngIf="sectionForm.get('title')?.errors?.minlength" style="color: red;">Title must be at least 5 characters long.</div>
+          </div>
         </div>
+        
         <div>
           <label for="content">Content</label>
           <textarea id="content" formControlName="content" nbInput placeholder="Enter content"></textarea>
+          <div *ngIf="sectionForm.get('content')?.invalid && (sectionForm.get('content')?.dirty || sectionForm.get('content')?.touched)">
+            <div *ngIf="sectionForm.get('content')?.errors?.required" style="color: red;">Content is required.</div>
+            <div *ngIf="sectionForm.get('content')?.errors?.minlength" style="color: red;">Content must be at least 10 characters long.</div>
+          </div>
         </div>
+        
         <div>
           <label for="image">Select Image</label>
           <input id="image" type="file" (change)="onFileSelect($event)" />
         </div>
+        
         <div *ngIf="previewUrl">
           <img [src]="previewUrl" alt="Image Preview" style="max-width: 100px; max-height: 100px;" />
         </div>
+        
       </form>
+      
     </nb-card-body>
     <nb-card-footer>
       <div class="form-actions">
         <button nbButton status="danger" (click)="cancel()">Cancel</button>
-        <button nbButton status="success" (click)="onSubmit()">Submit</button>
+        <button nbButton status="success" (click)="onSubmit()" [disabled]="sectionForm.invalid">Submit</button>
       </div>
     </nb-card-footer>
   </nb-card>

@@ -27,8 +27,8 @@ export class SectionsComponent implements OnInit {
     
     this.sectionForm = this.fb.group({
       id: [''],
-      title: [''],
-      content: [''],
+      title: ['', [Validators.required, Validators.minLength(3)]],
+      content: ['', [Validators.required, Validators.minLength(10)]],
       imageUrl: ['']
     });
   }
