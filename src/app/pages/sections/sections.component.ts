@@ -111,4 +111,17 @@ export class SectionsComponent implements OnInit {
     this.dialogService.open(AddDialogComponent);
   }
   
+
+  currentStep = 0;
+  nextStep() {
+    if (this.currentStep < this.sections.length - 1) {
+      this.currentStep++;
+    }
+  }
+
+  prevStep() {
+    if (this.currentStep > 0) {
+      this.currentStep--;
+    }
+  }
 }
