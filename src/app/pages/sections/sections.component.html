@@ -1,21 +1,20 @@
-<div>
 
-    <div *ngFor="let section of sections">
-    <nb-flip-card>
-        <nb-card-front>
-            <nb-card>
+  <nb-card size="medium">
+    <nb-card-body>
+      <nb-stepper orientation="vertical">
+        <nb-step *ngFor="let section of sections" [label]="section.title">
+          <nb-flip-card>
+            <nb-card-front>
+              <nb-card>
                 <nb-card-body>
-
-                <h2>{{ section.title }}</h2>
-                <br>
-                <p>{{ section.content }}</p>
-                <br>
-                <img [src]="section.imageUrl" alt="{{ section.title }}" style="max-width: 200px; max-height: 200px;" />
-             
+                  <h2>{{ section.title }}</h2>
+                  <br>
+                  <p>{{ section.content }}</p>
+                  <br>
+                  <img [src]="section.imageUrl" alt="{{ section.title }}" style="max-width: 200px; max-height: 200px;" />
                 </nb-card-body>
-                
-            </nb-card>
-        </nb-card-front>
+              </nb-card>
+            </nb-card-front>
         <nb-card-back>
             <nb-card style="background-color: rgba(56, 56, 56, 0.387);">
               <nb-card-body>
@@ -61,10 +60,9 @@
               </nb-card-body>
             </nb-card>
         </nb-card-back>
-    </nb-flip-card>
+          </nb-flip-card>
    
 
-    </div>
   <br>
   <div class="col-md-12 col-lg-6 col-xxxl-3">
       <nb-card-header>Create more sections</nb-card-header>
@@ -74,5 +72,4 @@
     
   </div>
 
-</div>
   
