@@ -11,6 +11,7 @@ import { SectionsComponent } from './sections/sections.component';
 
 const routes: Routes = [
   { path: 'pages/edit', component: SectionsComponent },
+
   {
   path: '',
   component: PagesComponent,

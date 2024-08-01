@@ -13,6 +13,7 @@ import { DiscoverPhase } from '../../@core/data/DiscoverPhase';
 import { DeployPhase } from '../../@core/data/Deploy';
 import { Section } from '../../@core/data/Section';
 import { ExplorePhase } from '../../@core/data/ExplorePhase.Model';
+import { Chart, ChartData, ChartOptions, registerables } from 'chart.js';
 
 @Component({
   selector: 'ngx-activate',
@@ -31,8 +32,10 @@ export class ActivateComponent implements OnInit {
   showphase: boolean = false;
   backlogDocumentFile: File | null = null;
   backlogDocumentFileName: string | null = null;  // For displaying the file name
+  showStats: boolean = false;
 
-  migrationModelsOptions: string[] = ['System Copy', 'Data Migration', 'Technical Migration','Functional Migration','Cloud Migration','Selective Data Transition'];
+  migrationModelsOptions: string[] = ['System Copy', 'Data Migration', 'Technical Migration', 'Functional Migration', 'Cloud Migration', 'Selective Data Transition'];
+  
   standardProcessExecutionOptions: string[] = [
     'Order-to-Cash (O2C)',
     'Procure-to-Pay (P2P)',
@@ -68,6 +71,20 @@ export class ActivateComponent implements OnInit {
   // Deploy Phase
   deployForm: FormGroup;
   selectedPhase: any;
+  exploreForm: FormGroup;
+  activate: any;
+  stats: any;
+
+  // Explore Phase Stats
+  public migrationModelsChartData: ChartData<'bar'>;
+  public migrationModelsChartOptions: ChartOptions<'bar'> = {
+    responsive: true,
+  };
+
+  public standardProcessExecutionChartData: ChartData<'bar'>;
+  public standardProcessExecutionChartOptions: ChartOptions<'bar'> = {
+    responsive: true,
+  };
 
   constructor(
     private fb: FormBuilder,
@@ -75,10 +92,23 @@ export class ActivateComponent implements OnInit {
     private deployPhaseService: DeployPhaseService,
     private toastrService: NbToastrService,
     private projectPreparationService: ProjectPreparationService,
-    private ExplorePhaseService: ExplorePhaseService,
+    private explorePhaseService: ExplorePhaseService,
     private router: Router,
     private sectionService: SectionService
   ) {
+    Chart.register(...registerables);
+
+    this.exploreForm = this.fb.group({
+      finalizedBusinessProcesses: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100), Validators.pattern('[A-Za-z\\s]+')]],
+      keyDeliverables: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
+      migrationModels: ['', [Validators.required]],
+      standardProcessExecution: ['', [Validators.required]],
+      additionalObjects: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(500)]],
+      configurationValues: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(500)]],
+      backlogDocument: [null],
+      scenarioValidation: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(500)]]
+    });
+
     this.deployForm = this.fb.group({
       deploymentPlan: [''],
       goLiveDate: [''],
@@ -112,11 +142,64 @@ export class ActivateComponent implements OnInit {
   ngOnInit(): void {
     this.loadProjectPreparations();
     this.getData();
+    this.initializeChartData();
 
     this.sectionService.getSections().subscribe(data => {
       this.sections = data;
       console.log(this.sections);
     });
+  }
+
+  toggleStats(): void {
+    this.showStats = !this.showStats;
+    if (this.showStats) {
+      setTimeout(() => {
+        this.initializeChartData();
+      }, 0);
+    }
+  }
+
+  private initializeChartData(): void {
+    const migrationModelsCtx = document.getElementById('migrationModelsChart') as HTMLCanvasElement;
+    const standardProcessExecutionCtx = document.getElementById('standardProcessExecutionChart') as HTMLCanvasElement;
+
+    if (migrationModelsCtx) {
+      this.migrationModelsChartData = {
+        labels: ['Phase 1', 'Phase 2', 'Phase 3'],
+        datasets: [{
+          label: 'Migration Models',
+          data: [12, 19, 3],
+          backgroundColor: 'rgba(75, 192, 192, 0.2)',
+          borderColor: 'rgba(75, 192, 192, 1)',
+          borderWidth: 1
+        }]
+      };
+
+      new Chart(migrationModelsCtx, {
+        type: 'bar',
+        data: this.migrationModelsChartData,
+        options: this.migrationModelsChartOptions
+      });
+    }
+
+    if (standardProcessExecutionCtx) {
+      this.standardProcessExecutionChartData = {
+        labels: ['Phase 1', 'Phase 2', 'Phase 3'],
+        datasets: [{
+          label: 'Standard Process Execution',
+          data: [15, 29, 5],
+          backgroundColor: 'rgba(153, 102, 255, 0.2)',
+          borderColor: 'rgba(153, 102, 255, 1)',
+          borderWidth: 1
+        }]
+      };
+
+      new Chart(standardProcessExecutionCtx, {
+        type: 'line',
+        data: this.standardProcessExecutionChartData,
+        options: this.standardProcessExecutionChartOptions
+      });
+    }
   }
 
   redirectToPagesEdit() {
@@ -128,7 +211,7 @@ export class ActivateComponent implements OnInit {
     if (input.files && input.files.length) {
       this.roadmapFile = input.files[0];
       this.roadmapFileName = this.roadmapFile.name;
-      console.log('Selected roadmap file:', this.roadmapFileName);
+      console.log('Selected roadmap file:', this.roadmapFileName,this.roadmapFile);
     }
   }
 
@@ -212,7 +295,7 @@ export class ActivateComponent implements OnInit {
 
   // Explore Phase Methods
   getData() {
-    this.ExplorePhaseService.getAllExplorePhases().subscribe(
+    this.explorePhaseService.getAllExplorePhases().subscribe(
       (data: ExplorePhase[]) => {
         this.explorephases = data.map(item => ({ ...item, showDetails: false }));
       },
@@ -222,14 +305,16 @@ export class ActivateComponent implements OnInit {
     );
   }
 
+
+
   addOrUpdateexplorephase() {
     if (this.selectedExplorePhase) {
-      this.ExplorePhaseService.updateExplorePhase(this.newExplorerPhase).subscribe(() => {
+      this.explorePhaseService.updateExplorePhase(this.newExplorerPhase).subscribe(() => {
         this.getData();
         this.closeModalEx();
       });
     } else {
-      this.ExplorePhaseService.createExplorePhase(this.newExplorerPhase).subscribe(() => {
+      this.explorePhaseService.createExplorePhase(this.newExplorerPhase).subscribe(() => {
         this.getData();
         this.closeModalEx();
       });
@@ -254,7 +339,7 @@ export class ActivateComponent implements OnInit {
 
   deleteExplorePhase(id: string) {
     if (confirm('Are you sure you want to delete this Explore Phase?')) {
-      this.ExplorePhaseService.deleteExplorePhase(id).subscribe(() => {
+      this.explorePhaseService.deleteExplorePhase(id).subscribe(() => {
         this.getData();
       });
     }

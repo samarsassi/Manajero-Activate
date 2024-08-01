@@ -417,7 +417,25 @@
                   </div>
                 </div>
             
-                <!-- Modal pour Ajouter/Éditer une Phase d'Exploration -->
+                <button class="btn btn-primary btn-sm" (click)="toggleStats()">
+                  {{ showStats ? 'Hide Stats' : 'See Stats' }}
+                </button>
+            
+                <div *ngIf="showStats">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <h3 class="text-center">Migration Models</h3>
+                      <canvas id="migrationModelsChart"></canvas>
+                    </div>
+                    <div class="col-md-6">
+                      <h3 class="text-center">Standard Process Execution</h3>
+                      <canvas id="standardProcessExecutionChart"></canvas>
+                    </div>
+                  </div>
+                </div>
+                
+            
+                <!-- Modal for Adding/Editing an Exploration Phase -->
                 <div *ngIf="showphase" class="modal fade show" tabindex="-1" role="dialog" style="display: block;">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -427,44 +445,64 @@
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
-                      <form (ngSubmit)="addOrUpdateexplorephase()" #explorationPhaseForm="ngForm">
+                      <form (ngSubmit)="addOrUpdateExplorePhase()" #explorationPhaseForm="ngForm">
                         <div class="modal-body">
                           <div class="form-group">
                             <label for="finalizedBusinessProcesses">Processus Métiers Finalisés</label>
-                            <input type="text" class="form-control" id="finalizedBusinessProcesses" [(ngModel)]="newExplorerPhase.finalizedBusinessProcesses" name="finalizedBusinessProcesses" required>
+                            <input type="text" class="form-control" id="finalizedBusinessProcesses" [(ngModel)]="newExplorerPhase.finalizedBusinessProcesses" name="finalizedBusinessProcesses" required minlength="3" maxlength="100" pattern="[A-Za-z\s]+">
+                            <div *ngIf="explorationPhaseForm.submitted && !explorationPhaseForm.controls.finalizedBusinessProcesses.valid" class="text-danger">
+                              Processus Métiers Finalisés est requis (3-100 caractères, lettres uniquement).
+                            </div>
                           </div>
                           <div class="form-group">
                             <label for="keyDeliverables">Livraisons Clés</label>
-                            <input type="text" class="form-control" id="keyDeliverables" [(ngModel)]="newExplorerPhase.keyDeliverables" name="keyDeliverables" required>
+                            <input type="text" class="form-control" id="keyDeliverables" [(ngModel)]="newExplorerPhase.keyDeliverables" name="keyDeliverables" required minlength="3" maxlength="100">
+                            <div *ngIf="explorationPhaseForm.submitted && !explorationPhaseForm.controls.keyDeliverables.valid" class="text-danger">
+                              Livraisons Clés est requis (3-100 caractères).
+                            </div>
                           </div>
                           <div class="form-group">
                             <label for="migrationModels">Modèles de Migration</label>
                             <select class="form-control" id="migrationModels" [(ngModel)]="newExplorerPhase.migrationModels" name="migrationModels" required>
                               <option *ngFor="let model of migrationModelsOptions" [value]="model">{{ model }}</option>
                             </select>
+                            <div *ngIf="explorationPhaseForm.submitted && !explorationPhaseForm.controls.migrationModels.valid" class="text-danger">
+                              Veuillez sélectionner un modèle de migration.
+                            </div>
                           </div>
                           <div class="form-group">
                             <label for="standardProcessExecution">Exécution de Processus Standard</label>
                             <select class="form-control" id="standardProcessExecution" [(ngModel)]="newExplorerPhase.standardProcessExecution" name="standardProcessExecution" required>
                               <option *ngFor="let execution of standardProcessExecutionOptions" [value]="execution">{{ execution }}</option>
                             </select>
+                            <div *ngIf="explorationPhaseForm.submitted && !explorationPhaseForm.controls.standardProcessExecution.valid" class="text-danger">
+                              Veuillez sélectionner une exécution de processus standard.
+                            </div>
                           </div>
                           <div class="form-group">
                             <label for="additionalObjects">Objets Additionnels</label>
-                            <textarea class="form-control" id="additionalObjects" [(ngModel)]="newExplorerPhase.additionalObjects" name="additionalObjects" required></textarea>
+                            <textarea class="form-control" id="additionalObjects" [(ngModel)]="newExplorerPhase.additionalObjects" name="additionalObjects" required minlength="5" maxlength="500"></textarea>
+                            <div *ngIf="explorationPhaseForm.submitted && !explorationPhaseForm.controls.additionalObjects.valid" class="text-danger">
+                              Objets Additionnels est requis (5-500 caractères).
+                            </div>
                           </div>
                           <div class="form-group">
                             <label for="configurationValues">Valeurs de Configuration</label>
-                            <textarea class="form-control" id="configurationValues" [(ngModel)]="newExplorerPhase.configurationValues" name="configurationValues" required></textarea>
+                            <textarea class="form-control" id="configurationValues" [(ngModel)]="newExplorerPhase.configurationValues" name="configurationValues" required minlength="5" maxlength="500"></textarea>
+                            <div *ngIf="explorationPhaseForm.submitted && !explorationPhaseForm.controls.configurationValues.valid" class="text-danger">
+                              Valeurs de Configuration est requis (5-500 caractères).
+                            </div>
                           </div>
                           <div class="form-group">
                             <label for="backlogDocument">Document de Backlog</label>
                             <input type="file" class="form-control-file" id="backlogDocument" (change)="onFileSelect($event, 'backlogDocument')" name="backlogDocument">
                           </div>
-                          
                           <div class="form-group">
                             <label for="scenarioValidation">Validation de Scénario</label>
-                            <textarea class="form-control" id="scenarioValidation" [(ngModel)]="newExplorerPhase.scenarioValidation" name="scenarioValidation" required></textarea>
+                            <textarea class="form-control" id="scenarioValidation" [(ngModel)]="newExplorerPhase.scenarioValidation" name="scenarioValidation" required minlength="5" maxlength="500"></textarea>
+                            <div *ngIf="explorationPhaseForm.submitted && !explorationPhaseForm.controls.scenarioValidation.valid" class="text-danger">
+                              Validation de Scénario est requis (5-500 caractères).
+                            </div>
                           </div>
                         </div>
                         <div class="modal-footer">
@@ -477,9 +515,10 @@
                 </div>
               </div>
             
-              <button nbButton disabled nbStepperPrevious>Précédent</button>
+              <button nbButton nbStepperPrevious>Précédent</button>
               <button nbButton nbStepperNext>Essayer la méthodologie</button>
             </nb-step>
+            
             
             
 

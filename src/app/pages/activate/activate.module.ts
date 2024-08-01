@@ -5,6 +5,8 @@ import { ThemeModule } from '../../@theme/theme.module';
 import { NbCardModule, NbButtonModule, NbTabsetModule, NbRouteTabsetModule, NbStepperModule, NbListModule, NbAccordionModule, NbUserModule, NbSelectModule, NbCheckboxModule, NbTooltipModule, NbPopoverModule, NbIconModule, NbSpinnerModule, NbToastrModule } from '@nebular/theme';
 import { ActivateComponent } from './activate.component';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
+import { routes } from '../../app-routing.module';
 
 @NgModule({
   declarations: [ActivateComponent],
