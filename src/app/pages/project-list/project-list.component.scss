@@ -1,0 +1,22 @@
+.btn-go-back {
+    background-color: #007bff; /* Primary color */
+    color: #fff; /* Text color */
+    border: none; /* Remove default border */
+    border-radius: 50%; /* Circular shape */
+    width: 50px; /* Width of the button */
+    height: 50px; /* Height of the button */
+    display: flex; /* Flexbox for alignment */
+    align-items: center; /* Center items vertically */
+    justify-content: center; /* Center items horizontally */
+    font-size: 1.5rem; /* Font size */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s, border-color 0.3s; /* Smooth transitions */
+  }
+  
+  .btn-go-back nb-icon {
+    margin-right: 8px; /* Spacing between icon and text */
+  }
+  
+  .btn-go-back:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+  }

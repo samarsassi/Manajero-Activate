@@ -11,6 +11,7 @@ import { ActivateComponent } from './activate/activate.component';
 import { NavPageModule } from './nav-page/nav-page.module';
 import { ActivateModule } from './activate/activate.module';
 import { SectionsModule } from './sections/Sections.module';
+import { ProjectListModule } from './project-list/project-list.module';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { SectionsModule } from './sections/Sections.module';
     ECommerceModule,
     MiscellaneousModule,
     ActivateModule,
-    SectionsModule
+    SectionsModule,
+    ProjectListModule,
   ],
   declarations: [
     PagesComponent,
