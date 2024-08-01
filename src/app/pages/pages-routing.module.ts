@@ -8,6 +8,7 @@ import { NotFoundComponent } from './miscellaneous/not-found/not-found.component
 import { ActivateComponent } from './activate/activate.component';
 import { NavPageComponent } from './nav-page/nav-page.component';
 import { SectionsComponent } from './sections/sections.component';
+import { ProjectListComponent } from './project-list/project-list.component';
 
 const routes: Routes = [
   { path: 'pages/edit', component: SectionsComponent },
@@ -26,6 +27,10 @@ const routes: Routes = [
     {
       path: 'nav',
       component: NavPageComponent,
+    },
+    {
+      path: 'projectslist',
+      component: ProjectListComponent,
     },
     {
     path: 'activate',

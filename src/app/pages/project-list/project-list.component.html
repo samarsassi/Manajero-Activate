@@ -1,0 +1,15 @@
+<nb-card>
+    <nb-card-header>
+        Projects List
+    </nb-card-header>
+
+    <nb-card-body>
+        <ng2-smart-table [settings]="settings" [source]="source" (saveConfirm)="onSaveConfirm($event)" (deleteConfirm)="onDeleteConfirm($event)">
+        </ng2-smart-table>
+    </nb-card-body>
+    <nb-card-footer>
+        <button class="btn-go-back" (click)="goBack()">
+            <nb-icon icon="arrow-left-outline"></nb-icon>
+        </button>
+      </nb-card-footer>
+</nb-card>

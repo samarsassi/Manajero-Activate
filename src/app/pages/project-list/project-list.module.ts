@@ -10,13 +10,15 @@ import {
   NbListModule,
   NbIconModule,
   NbCheckboxModule,
+  NbToastrService,
+  NbToastrModule,
 } from '@nebular/theme';
 import { NgxEchartsModule } from 'ngx-echarts';
-
 import { ThemeModule } from '../../@theme/theme.module';
-import { NavPageComponent } from './nav-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AddProjectDialogComponent } from './addproject-dialog/addproject-dialog.component';
+import { ProjectListComponent } from './project-list.component';
+import { TablesRoutingModule } from '../tables/tables-routing.module';
+import { Ng2SmartTableModule } from 'ng2-smart-table';
 
 @NgModule({
   imports: [
@@ -34,11 +36,14 @@ import { AddProjectDialogComponent } from './addproject-dialog/addproject-dialog
     NbIconModule,
     NbButtonModule,
     NgxEchartsModule,
-    NbCheckboxModule
+    NbCheckboxModule,
+    TablesRoutingModule,
+    Ng2SmartTableModule,
+    NbToastrModule,
+   
   ],
   declarations: [
-    NavPageComponent,
-    AddProjectDialogComponent
+    ProjectListComponent
   ],
 })
-export class NavPageModule { }
+export class ProjectListModule { }

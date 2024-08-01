@@ -1,0 +1,50 @@
+<!-- project-dialog.component.html -->
+<div class="dialog-overlay" >
+    <div class="dialog">
+      <div class="dialog-header">
+        <h2>Add New Project</h2>
+        <button class="close-button" (click)="cancel()">×</button>
+      </div>
+      <div class="dialog-body">
+        <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input id="title" formControlName="title" placeholder="Enter title" />
+            <div *ngIf="projectForm.get('title')?.invalid && (projectForm.get('title')?.dirty || projectForm.get('title')?.touched)">
+              <div *ngIf="projectForm.get('title')?.errors?.required" class="error">Title is required.</div>
+              <div *ngIf="projectForm.get('title')?.errors?.minlength" class="error">Title must be at least 5 characters long.</div>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="statementWork">Statement of Work</label>
+            <textarea id="statementWork" formControlName="statementWork" placeholder="Enter statement of work"></textarea>
+            <div *ngIf="projectForm.get('statementWork')?.invalid && (projectForm.get('statementWork')?.dirty || projectForm.get('statementWork')?.touched)">
+              <div *ngIf="projectForm.get('statementWork')?.errors?.required" class="error">Statement of work is required.</div>
+              <div *ngIf="projectForm.get('statementWork')?.errors?.minlength" class="error">Statement of work must be at least 10 characters long.</div>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="projectManager">Project Manager</label>
+            <input id="projectManager" formControlName="projectManager" placeholder="Enter project manager name" />
+          </div>
+          
+          <div class="form-group">
+            <label for="dateSubmitted">Date Submitted</label>
+            <input id="dateSubmitted" type="date" formControlName="dateSubmitted" />
+          </div>
+          
+          <div class="form-group">
+            <input id="archived" type="checkbox" formControlName="archived" />
+            <label for="archived">Archived</label>
+          </div>
+        </form>
+      </div>
+      <div class="dialog-footer">
+        <button class="cancel-button" (click)="cancel()">Cancel</button>
+        <button class="submit-button" (click)="onSubmit()" [disabled]="projectForm.invalid">Submit</button>
+      </div>
+    </div>
+  </div>
+  
