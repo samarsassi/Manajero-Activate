@@ -21,6 +21,10 @@ export class NavPageComponent {
     this.dialogService.open(AddProjectDialogComponent);
   }
 
+  navigateToTuto(): void {
+    this.router.navigate(['pages/activate']);
+  }
+
   navigateToProjectList(): void {
     this.router.navigate(['pages/projectslist']);
   }

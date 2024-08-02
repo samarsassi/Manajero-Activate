@@ -128,7 +128,9 @@
                             </div>
                             </div>
                         <br>
-                        <button nbButton disabled nbStepperNext>prev</button>
+                        <button nbButton (click)="goBack()">
+                          <nb-icon icon="arrow-left-outline"></nb-icon>
+                        </button>
                         <button nbButton nbStepperNext>Try the methodology</button>
                         
             </nb-step>

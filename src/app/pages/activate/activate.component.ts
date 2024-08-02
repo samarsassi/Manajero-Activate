@@ -332,4 +332,9 @@ export class ActivateComponent implements OnInit {
   toggleDetails(preparation: any) {
     preparation.showDetails = !preparation.showDetails;
   }
+
+
+  goBack(): void {
+    this.router.navigate(['pages/nav']); 
+  }
 }
