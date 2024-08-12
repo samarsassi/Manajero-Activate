@@ -18,6 +18,11 @@ export class ProjectPreparationService {
   getProjectPreparation(id: string): Observable<ProjectPreparation> {
     return this.http.get<ProjectPreparation>(`${this.apiUrl}/retrieve/${id}`);
   }
+    // Example service method
+  getProjectPreparationsByProjectId(projectId: number): Observable<ProjectPreparation> {
+    return this.http.get<ProjectPreparation>(`/api/projectPreparations?projectId=${projectId}`);
+  }
+
 
   addProjectPreparation(projectPreparation: ProjectPreparation): Observable<ProjectPreparation> {
     return this.http.post<ProjectPreparation>(`${this.apiUrl}/add`, projectPreparation);

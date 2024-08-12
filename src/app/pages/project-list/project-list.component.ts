@@ -34,6 +34,10 @@ export class ProjectListComponent {
         title: 'Title',
         type: 'string',
       },
+      status: {
+        title: 'Status',
+        type: 'string',
+      },
       statementWork: {
         title: 'Statement of Work',
         type: 'string',
@@ -101,6 +105,12 @@ export class ProjectListComponent {
       }
     );
   }
+
+  onRowSelect(event: any) {
+    const selectedRowData = event.data;
+    this.router.navigate(['pages/project-details', selectedRowData.id]);
+  }
+
   goBack(): void {
     this.router.navigate(['pages/nav']); 
   }

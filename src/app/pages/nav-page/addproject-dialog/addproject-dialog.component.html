@@ -29,6 +29,16 @@
             <label for="projectManager">Project Manager</label>
             <input id="projectManager" formControlName="projectManager" placeholder="Enter project manager name" />
           </div>
+
+          <div class="form-group">
+            <label for="status">Status</label>
+            <select id="status" formControlName="status" name="status">
+              <option value="Not Started" selected>Not Started</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Completed">Completed</option>
+              <option value="On Hold">On Hold</option>
+            </select>
+          </div>
           
           <div class="form-group">
             <label for="dateSubmitted">Date Submitted</label>
@@ -36,8 +46,11 @@
           </div>
           
           <div class="form-group">
+            <div class="archived">
+              <label for="archived">Archived</label>
             <input id="archived" type="checkbox" formControlName="archived" />
-            <label for="archived">Archived</label>
+            </div>
+            
           </div>
         </form>
       </div>

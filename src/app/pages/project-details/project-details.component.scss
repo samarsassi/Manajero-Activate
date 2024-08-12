@@ -1,3 +1,188 @@
+
+.front-card-body {
+  font-size: 14px;
+    color: #333;
+    padding-top: 30px;
+    background-color: whitesmoke;
+    border-radius: 350px;
+    max-width: 800px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: -180px;
+}
+
+.front-card-body p {
+  margin: 0 0 10px;
+}
+
+.front-card-body p strong {
+  color: #000;
+}
+
+form {
+    margin-bottom: 20px;
+  }
+  
+  form div {
+    margin-bottom: 10px;
+  }
+  
+  div h2 {
+    margin-top: 20px;
+  }
+  
+  input, textarea, select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
+  
+
+  .disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+ /* Button Container */
+.button-container {
+  display: flex;
+  margin-left: 15px;
+  margin-bottom: 15px;
+  gap: 10px; /* Space between buttons */
+  margin-top: 15px; /* Space above the buttons */
+}
+
+/* General Button Style */
+.button {
+  padding: 10px 15px; /* Padding inside the button */
+  border: none; /* Remove default border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-size: 14px; /* Font size */
+  font-weight: bold; /* Font weight */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+}
+
+/* Edit Button Style */
+.edit-button {
+  background-color: #4CAF50; /* Green background */
+  color: white; /* White text */
+}
+
+.edit-button:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
+
+.save-button {
+  background-color: #6f9bce; /* Green background */
+  color: white; /* White text */
+}
+
+.save-button:hover {
+  background-color: #6b6d84; /* Darker green on hover */
+}
+
+/* Delete Button Style */
+.delete-button {
+  background-color: #f44336; /* Red background */
+  color: white; /* White text */
+}
+
+.delete-button:hover {
+  background-color: #e53935; /* Darker red on hover */
+}
+
+.add-button {
+  padding: 10px 20px; /* Padding inside the button */
+  border: none; /* Remove default border */
+  border-radius: 5px; /* Rounded corners */
+  background-color: #007bff; /* Blue background */
+  color: white; /* White text */
+  font-size: 14px; /* Font size */
+  font-weight: bold; /* Font weight */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transitions */
+}
+
+.add-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+}
+
+.add-button:focus {
+  outline: none; /* Remove default focus outline */
+}
+
+  /* Form Container */
+.form-container {
+  display: flex;
+  flex-direction: column;
+  margin: 10px; /* Space around the form */
+}
+
+/* Form Field Container */
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px; /* Space between label and input */
+}
+
+/* Label Style */
+.form-field label {
+  font-size: 14px; /* Font size for labels */
+  font-weight: bold; /* Font weight for labels */
+  color: #333; /* Text color for labels */
+}
+
+/* Input and Textarea Style */
+.form-field input,
+.form-field textarea {
+  padding: 10px; /* Padding inside input fields */
+  border: 1px solid #ccc; /* Light border */
+  border-radius: 5px; /* Rounded corners */
+  font-size: 14px; /* Font size for input text */
+  width: 100%; /* Full width */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+/* Textarea Specific Style */
+.form-field textarea {
+  resize: vertical; /* Allow vertical resizing only */
+  min-height: 100px; /* Minimum height for textarea */
+}
+
+/* Placeholder Style */
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+  color: #888; /* Placeholder text color */
+}
+.btn-go-back {
+  margin-top: 15px;
+  background-color: #007bff; /* Primary color */
+  color: #fff; /* Text color */
+  border: none; /* Remove default border */
+  border-radius: 50%; /* Circular shape */
+  width: 50px; /* Width of the button */
+  height: 50px; /* Height of the button */
+  display: flex; /* Flexbox for alignment */
+  align-items: center; /* Center items vertically */
+  justify-content: center; /* Center items horizontally */
+  font-size: 1.5rem; /* Font size */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s, border-color 0.3s; /* Smooth transitions */
+}
+
+.btn-go-back nb-icon {
+  margin-right: 2px; /* Spacing between icon and text */
+}
+
+.btn-go-back:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+}
+
+
+
+////Phases Stepper////
 @import url("https://fonts.googleapis.com/css2?family=Alumni+Sans:wght@400;600;700&display=swap");
 
 * {
@@ -14,17 +199,16 @@ body {
 }
 
 .documentation-container {
-  width: 100%;
-  max-width: 800px;
-  margin: 0 auto; /* Centers the container horizontally */
-  padding: 20px;
-  background-color: #d4d2d2;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #d4d2d2; 
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-
 h1, h2, h3 {
+  text-align: center;
     color: #0070d2;
     transition: color 0.3s, transform 0.3s;
 }
@@ -62,7 +246,7 @@ button:hover {
 .svg-container {
   width: 100%;
   max-width: 500px; /* Optional: Set a maximum width for larger screens */
-  margin:auto;
+  margin: auto; /* Center the SVG horizontally */
 }
 
 .responsive-svg {
@@ -178,8 +362,9 @@ button:hover {
       }
 
 /* Form header */
-h2 {
-    text-align: center;
+.form-header {
+    margin-top: 5px;
+    margin-left: 10px;
     margin-bottom: 20px;
     font-size: 24px;
     color: #4f4c4c;

@@ -62,7 +62,6 @@
     "ng2-completer": "^9.0.1",
     "ng2-smart-table": "^1.6.0",
     "ngx-echarts": "^4.2.2",
-    
     "normalize.css": "6.0.0",
     "pace-js": "1.0.2",
     "roboto-fontface": "0.8.0",
@@ -116,5 +115,4 @@
     "tslint-language-service": "^0.9.9",
     "typescript": "~4.9.5"
   }
-  
 }

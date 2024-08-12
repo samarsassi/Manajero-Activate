@@ -1,0 +1,598 @@
+<nb-card>
+    <nb-card-header>
+      <div class="form-header">{{ project?.title }}</div>
+    </nb-card-header>
+  
+    <nb-card-body>
+      <nb-flip-card style="width: 100%; padding-left: 10px; padding-right: 10px;">
+        <nb-card-front>
+          <nb-card>
+            <div class="front-card-body">
+              <p style="margin-left: 220px;"><strong>Project Manager:</strong> <br>
+                 {{ project?.projectManager }}</p>
+              <br>
+              <p style="margin-left: 220px;"><strong>Date Submitted:</strong> 
+                <br> {{ project?.dateSubmitted | date }}</p>
+              <br>
+              <p style="margin-left: 220px;"><strong>Status:</strong>
+                <br> {{ project?.status }}</p>
+              <br>
+              <p style="margin-left: 220px;"><strong>Statement of Work:</strong> 
+                <br>{{ project?.statementWork }}</p>
+              <br>
+              <p style="margin-left: 220px;"><strong>Archived:</strong> <input type="checkbox" [checked]="project?.archived" disabled /></p>
+              <br>
+          </div>
+          </nb-card>
+        </nb-card-front>
+        <nb-card-back>
+          <nb-card style="background-color: rgba(56, 56, 56, 0.387);">
+            <nb-card-body>
+              <div class="button-container">
+                <button class="button edit-button" (click)="flipeditProject(project)">Edit</button>
+                <button class="button delete-button" 
+                (click)="deleteProject(project.id)"
+                [ngClass]="{'disabled': project.archived}">Delete</button>
+              </div>
+        
+              <form *ngIf="notauth"  [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+                <input formControlName="id" type="hidden" />
+        
+                <div class="form-container">
+                  <div class="form-field">
+                    <label for="projectTitle">Project Title</label>
+                    <input id="projectTitle" formControlName="projectTitle" type="text" placeholder="Enter project title" />
+                    <div *ngIf="projectForm.get('projectTitle')?.invalid && (projectForm.get('projectTitle')?.dirty || projectForm.get('projectTitle')?.touched)">
+                      <div *ngIf="projectForm.get('projectTitle')?.errors?.required" style="color: red;">Project Title is required.</div>
+                      <div *ngIf="projectForm.get('projectTitle')?.errors?.minlength" style="color: red;">Title must be at least 5 characters long.</div>
+                    </div>
+                  </div>
+                  <div class="form-field">
+                    <label for="projectManager">Project Manager</label>
+                    <input id="projectManager" formControlName="projectManager" type="text" placeholder="Enter project manager name" />
+                    <div *ngIf="projectForm.get('projectManager')?.invalid && (projectForm.get('projectManager')?.dirty || projectForm.get('projectManager')?.touched)">
+                      <div *ngIf="projectForm.get('projectManager')?.errors?.required" style="color: red;">Project Manager is required.</div>
+                    </div>
+                  </div>
+        
+                  <div class="form-field">
+                    <label for="dateSubmitted">Date Submitted</label>
+                    <input id="dateSubmitted" formControlName="dateSubmitted" type="date" />
+                    <div *ngIf="projectForm.get('dateSubmitted')?.invalid && (projectForm.get('dateSubmitted')?.dirty || projectForm.get('dateSubmitted')?.touched)">
+                      <div *ngIf="projectForm.get('dateSubmitted')?.errors?.required" style="color: red;">Date Submitted is required.</div>
+                    </div>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="status">Status</label>
+                    <select id="status" formControlName="status" name="status">
+                      <option value="Not Started" selected>Not Started</option>
+                      <option value="In Progress">In Progress</option>
+                      <option value="Completed">Completed</option>
+                      <option value="On Hold">On Hold</option>
+                    </select>
+                    <div *ngIf="projectForm.get('status')?.invalid && (projectForm.get('status')?.dirty || projectForm.get('status')?.touched)">
+                      <div *ngIf="projectForm.get('status')?.errors?.required" style="color: red;">The status is required.</div>
+                    </div>
+                  </div>
+        
+        
+                  <div class="form-field">
+                    <label for="statementWork">Statement of Work</label>
+                    <textarea id="statementWork" formControlName="statementWork" placeholder="Enter statement of work"></textarea>
+                    <div *ngIf="projectForm.get('statementWork')?.invalid && (projectForm.get('statementWork')?.dirty || projectForm.get('statementWork')?.touched)">
+                      <div *ngIf="projectForm.get('statementWork')?.errors?.required" style="color: red;">Statement of Work is required.</div>
+                    </div>
+                  </div>
+        
+                  <div class="form-field">
+                    <label for="archived">Archived</label>
+                    <input id="archived" formControlName="archived" type="checkbox" />
+                  </div>
+        
+                  <button class="button save-button" type="submit" [disabled]="projectForm.invalid">Save</button>
+                </div>
+              </form>
+            </nb-card-body>
+          </nb-card>
+        </nb-card-back>
+        
+      </nb-flip-card>
+  <br>
+
+      <nb-stepper orientation="horizontal">
+        
+        <nb-step [label]="labelTwo">
+        <ng-template #labelTwo>Discover</ng-template>
+        
+        <div class="col-md-12">
+            <nb-card class="inline-form-card">
+              <nb-card-header>
+                <h2>Discovery Phase Form</h2>
+                </nb-card-header>
+            <nb-card-body>
+              <br>
+              <form [formGroup]="discoverForm" (ngSubmit)="onSubmitDiscover()">
+                <br>
+                <div class="rowDiscover">
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label for="companyName" class="label">Company Name</label>
+                      <input type="text" nbInput fullWidth id="companyName" formControlName="companyName" required>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label for="industry" class="label">Sector of Activity</label>
+                      <nb-select id="industry" formControlName="industry" placeholder="Select Sector">
+                        <nb-option value="Technology">Technology</nb-option>
+                        <nb-option value="Finance">Finance</nb-option>
+                        <nb-option value="Healthcare">Healthcare</nb-option>
+                        <nb-option value="Manufacturing">Manufacturing</nb-option>
+                        <nb-option value="Retail">Retail</nb-option>
+                        <nb-option value="Education">Education</nb-option>
+                        <nb-option value="Transportation">Transportation</nb-option>
+                        <nb-option value="Legal">Legal</nb-option>
+                        <nb-option value="Telecommunications">Telecommunications</nb-option>
+                        <nb-option value="Energy">Energy</nb-option>
+                      </nb-select>
+                    </div>
+                  </div>
+                </div>
+              
+                <div class="form-group">
+                  <label for="currentChallenges" class="label">Current Challenges</label>
+                  <textarea nbInput fullWidth id="currentChallenges" formControlName="currentChallenges" required></textarea>
+                </div>
+              
+                <div class="form-group">
+                  <label for="requiredCapabilities" class="label">Required Capabilities in SAP Solution</label>
+                  <nb-card-body class="checkbox-radio">
+                    <div class="demo-items">
+                      <nb-checkbox (change)="updateCapabilities($event, 'automation')" nbPopover="Reduces manual work and increases efficiency" nbPopoverTrigger="hover" nbPopoverPlacement="top">Automation of Business Processes</nb-checkbox>
+                      <nb-checkbox (change)="updateCapabilities($event, 'analytics')" nbPopover="Provides insights and supports data-driven decision-making" nbPopoverTrigger="hover" nbPopoverPlacement="top">Data Analytics and Reporting</nb-checkbox>
+                      <nb-checkbox (change)="updateCapabilities($event, 'integration')" nbPopover="Compatible and seamless integration with current IT infrastructure" nbPopoverTrigger="hover" nbPopoverPlacement="top">Integration with Existing Systems</nb-checkbox>
+                      <nb-checkbox (change)="updateCapabilities($event, 'scalability')" nbPopover="Ability to scale as the business grows" nbPopoverTrigger="hover" nbPopoverPlacement="top">Scalability</nb-checkbox>
+                      <nb-checkbox (change)="updateCapabilities($event, 'userFriendly')" nbPopover="Intuitive and easy-to-use interface for end-users" nbPopoverTrigger="hover" nbPopoverPlacement="top">User-Friendly Interface</nb-checkbox>
+                      <nb-checkbox (change)="updateCapabilities($event, 'compliance')" nbPopover="Ensures industry-specific compliance and robust security" nbPopoverTrigger="hover" nbPopoverPlacement="top">Compliance and Security</nb-checkbox>
+                      <nb-checkbox (change)="updateCapabilities($event, 'customizability')" nbPopover="Customizable to meet unique business needs" nbPopoverTrigger="hover" nbPopoverPlacement="top">Customizability</nb-checkbox>
+                    </div>
+                  </nb-card-body>
+                </div>
+              
+                <ng-template #infocard>
+                  <nb-card class="popover-card" style="max-width: 400px;">
+                    <nb-card-header status="warning">
+                      Hello!
+                    </nb-card-header>
+                    <nb-card-body>
+                      Please provide a detailed description of your planned roadmap for the Discover phase. 
+                      Include key milestones, timelines, resources required, and any relevant details 
+                      about your project objectives and goals.
+                    </nb-card-body>
+                  </nb-card>
+                </ng-template>
+              
+                <div class="form-group">
+                  <label for="roadmap" class="label">
+                    Planned Roadmap
+                    <button nbButton 
+                      status="warning" 
+                      [nbPopover]="infocard" 
+                      nbPopoverTrigger="hover" 
+                      nbPopoverPlacement="right"
+                      class="info-button">
+                      <nb-icon icon="alert-circle-outline"></nb-icon>
+                    </button>
+                  </label>
+                  <input type="file" (change)="onFileSelect($event)" />
+                  <p *ngIf="roadmapFileName">Selected Roadmap File: {{ roadmapFileName }}</p>
+                 </div>
+              
+                <div class="form-group">
+                  <label for="expectedValue" class="label">Expected Value</label>
+                  <textarea nbInput fullWidth id="expectedValue" formControlName="expectedValue" 
+                    placeholder="Please describe the expected benefits or value that you hope to gain.Include specific goals, anticipated improvements, or any other relevant details."
+                    required></textarea>
+                </div>
+                <div class="rowDiscover">
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label for="phaseStartDate" class="label">Phase Start Date</label>
+                      <input type="date" nbInput fullWidth id="phaseStartDate" formControlName="phaseStartDate" required />
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label for="phaseEndDate" class="label">Phase End Date</label>
+                      <input type="date" nbInput fullWidth id="phaseEndDate" formControlName="phaseEndDate" required />
+                    </div>
+                  </div>
+                </div>
+              
+                <div class="form-group">
+                  <label for="phaseStatus" class="label">Phase Status</label>
+                  <nb-select id="phaseStatus" formControlName="phaseStatus" placeholder="Select Status">
+                    <nb-option value="Not Started" class="status-not-started">Not Started</nb-option>
+                    <nb-option value="In Progress" class="status-in-progress">In Progress</nb-option>
+                    <nb-option value="On Hold" class="status-on-hold">On Hold</nb-option>
+                  </nb-select>
+                </div>
+                
+      <button nbButton status="primary" type="submit" [disabled]="discoverForm.invalid">
+       
+        Submit
+      </button>
+              
+                <br>
+              </form>
+              
+    </nb-card-body>
+  </nb-card>
+        </div>
+        <br>
+
+                    <button (click)="goBack()" nbButton nbStepperNext> 
+                      <nb-icon icon="arrow-left-outline"></nb-icon>
+                    </button>
+                    <button nbButton nbStepperNext>next</button>
+        </nb-step>
+
+        <nb-step [label]="labelThree">
+                        <ng-template #labelThree>Preparation</ng-template>
+                        <div class="container mt-4">
+                          <h1 class="text-center mb-4">Project Preparations</h1>
+                          <div class="text-center mb-4">
+                            <button (click)="openModal()" class="btn btn-primary">Add New Project Preparation</button>
+                          </div>
+                          <div class="row">
+                            <div *ngFor="let preparation of projectPreparations" class="col-md-4 col-sm-6 mb-4">
+                              <div class="card" (click)="toggleDetails(preparation)">
+                                <div class="card-body">
+                                  <h5 class="card-title">{{ preparation.projectObjectives }}</h5>
+                                  <p class="card-text"><strong>Manager:</strong> {{ preparation.projectManager }}</p>
+                                  <p class="card-text"><strong>Developer:</strong> {{ preparation.developer }}</p>
+                                  <p class="card-text"><strong>Analyst:</strong> {{ preparation.businessAnalyst }}</p>
+                                  <div [ngClass]="{'details': true, 'show': preparation.showDetails}">
+                                    <p class="card-text"><strong>Start Date:</strong> {{ preparation.startDate }}</p>
+                                    <p class="card-text"><strong>End Date:</strong> {{ preparation.endDate }}</p>
+                                    <p class="card-text"><strong>Initial Planning:</strong> {{ preparation.initialPlanning }}</p>
+                                    <p class="card-text"><strong>Activities Validation:</strong> {{ preparation.activitiesValidation }}</p>
+                                    <p class="card-text"><strong>Roles & Responsibilities:</strong> {{ preparation.rolesResponsibilities }}</p>
+                                    <p class="card-text"><strong>Governance Procedures:</strong> {{ preparation.governanceProcedures }}</p>
+                                    <p class="card-text"><strong>Risk Assessment:</strong> {{ preparation.riskAssessment }}</p>
+                                    <p class="card-text"><strong>Budget:</strong> {{ preparation.budget }}</p>
+                                    <p class="card-text"><strong>Stakeholder Communication:</strong> {{ preparation.stakeholderCommunication }}</p>
+                                  </div>
+                                  <div class="d-flex justify-content-between mt-3">
+                                    <button (click)="selectProjectPreparation(preparation); $event.stopPropagation()" style="background-color: rgb(238, 177, 34);">Edit</button>
+                                    <button (click)="deleteProjectPreparation(preparation.id); $event.stopPropagation()" style="background-color: red;">Delete</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        
+                          <!-- Modal for Add/Edit Project Preparation -->
+                          <div *ngIf="showModal" class="modal" tabindex="-1" role="dialog" style="display: block;">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title">{{ selectedProjectPreparation ? 'Edit' : 'Add New' }} Project Preparation</h5>
+                                  <button type="button" class="close" (click)="closeModal()" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <form (ngSubmit)="addOrUpdateProjectPreparation()">
+
+                                  
+                                    <div class="modal-body">
+                                      <div class="form-group">
+                                        <label for="startDate">Start Date</label>
+                                        <input type="date" class="form-control" id="startDate" [(ngModel)]="newProjectPreparation.startDate" name="startDate" required>
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="endDate">End Date</label>
+                                        <input type="date" class="form-control" id="endDate" [(ngModel)]="newProjectPreparation.endDate" name="endDate" required>
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="projectManager">Project Manager</label>
+                                        <input type="text" class="form-control" id="projectManager" [(ngModel)]="newProjectPreparation.projectManager" name="projectManager" required>
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="developer">Developer</label>
+                                        <input type="text" class="form-control" id="developer" [(ngModel)]="newProjectPreparation.developer" name="developer" required>
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="businessAnalyst">Business Analyst</label>
+                                        <input type="text" class="form-control" id="businessAnalyst" [(ngModel)]="newProjectPreparation.businessAnalyst" name="businessAnalyst" required>
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="projectObjectives">Project Objectives</label>
+                                        <textarea class="form-control" id="projectObjectives" [(ngModel)]="newProjectPreparation.projectObjectives" name="projectObjectives" required></textarea>
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="initialPlanning">Initial Planning</label>
+                                        <textarea class="form-control" id="initialPlanning" [(ngModel)]="newProjectPreparation.initialPlanning" name="initialPlanning" required></textarea>
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="activitiesValidation">Activities Validation</label>
+                                        <textarea class="form-control" id="activitiesValidation" [(ngModel)]="newProjectPreparation.activitiesValidation" name="activitiesValidation" required></textarea>
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="rolesResponsibilities">Roles and Responsibilities</label>
+                                        <textarea class="form-control" id="rolesResponsibilities" [(ngModel)]="newProjectPreparation.rolesResponsibilities" name="rolesResponsibilities" required></textarea>
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="governanceProcedures">Governance Procedures</label>
+                                        <textarea class="form-control" id="governanceProcedures" [(ngModel)]="newProjectPreparation.governanceProcedures" name="governanceProcedures" required></textarea>
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="riskAssessment">Risk Assessment</label>
+                                        <textarea class="form-control" id="riskAssessment" [(ngModel)]="newProjectPreparation.riskAssessment" name="riskAssessment" required></textarea>
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="budget">Budget</label>
+                                        <input type="number" class="form-control" id="budget" [(ngModel)]="newProjectPreparation.budget" name="budget" required>
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="stakeholderCommunication">Stakeholder Communication</label>
+                                        <textarea class="form-control" id="stakeholderCommunication" [(ngModel)]="newProjectPreparation.stakeholderCommunication" name="stakeholderCommunication" required></textarea>
+                                      </div>
+                                    </div>
+                                  
+                                    <div class="modal-footer">
+                                      <button type="submit" class="btn btn-primary">{{ selectedProjectPreparation ? 'Update' : 'Add' }} Project Preparation</button>
+                                      <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+                                    </div>
+                                  
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        
+                    <button nbButton nbStepperNext>prev</button>
+                    <button nbButton nbStepperNext>next</button>
+        </nb-step>
+
+        <nb-step [label]="labelFour">
+          <ng-template #labelFour>Explore</ng-template>
+        
+          <div class="container mt-4">
+            <h1 class="text-center mb-4">Phases d'Exploration</h1>
+        
+            <div class="text-center mb-4">
+              <button (click)="openModalEx()" class="btn btn-primary btn-lg">Ajouter une nouvelle Phase</button>
+            </div>
+        
+            <div class="row">
+              <div *ngFor="let phase of explorephases" class="col-md-4 col-sm-6 mb-4">
+                <div class="card phase-card" (click)="toggleDetailsEx(phase)">
+                  <div class="card-body">
+                    <h5 class="card-title">{{ phase.finalizedBusinessProcesses }}</h5>
+                    <p class="card-text"><strong>Livrables Clés:</strong> {{ phase.keyDeliverables }}</p>
+                    <p class="card-text"><strong>Modèles de Migration:</strong> {{ phase.migrationModels }}</p>
+                    <p class="card-text"><strong>Exécution de Processus Standard:</strong> {{ phase.standardProcessExecution }}</p>
+                    <div [ngClass]="{'details': true, 'show': phase.showDetails}">
+                      <p class="card-text"><strong>Objets Additionnels:</strong> {{ phase.additionalObjects }}</p>
+                      <p class="card-text"><strong>Valeurs de Configuration:</strong> {{ phase.configurationValues }}</p>
+                      <p class="card-text"><strong>Document de Backlog:</strong> {{ phase.backlogDocument }}</p>
+                      <p class="card-text"><strong>Validation de Scénario:</strong> {{ phase.scenarioValidation }}</p>
+                    </div>
+                    <div class="d-flex justify-content-between mt-3">
+                      <button (click)="selectExplorePhase(phase); $event.stopPropagation()" class="btn btn-warning btn-sm">Éditer</button>
+                      <button (click)="deleteExplorePhase(phase.id); $event.stopPropagation()" class="btn btn-danger btn-sm">Supprimer</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        
+        
+            <!-- Modal for Adding/Editing an Exploration Phase -->
+            <div *ngIf="showphase" class="modal fade show" tabindex="-1" role="dialog" style="display: block;">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">{{ selectedExplorePhase ? 'Éditer' : 'Ajouter' }} une Phase d'Exploration</h5>
+                    <button type="button" class="close" (click)="closeModalEx()" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <form (ngSubmit)="addOrUpdateExplorePhase()" #explorationPhaseForm="ngForm">
+                    <div class="modal-body">
+                      <div class="form-group">
+                        <label for="finalizedBusinessProcesses">Processus Métiers Finalisés</label>
+                        <input type="text" class="form-control" id="finalizedBusinessProcesses" [(ngModel)]="newExplorerPhase.finalizedBusinessProcesses" name="finalizedBusinessProcesses" required minlength="3" maxlength="100" pattern="[A-Za-z\s]+">
+                        <div *ngIf="explorationPhaseForm.submitted && !explorationPhaseForm.controls.finalizedBusinessProcesses.valid" class="text-danger">
+                          Processus Métiers Finalisés est requis (3-100 caractères, lettres uniquement).
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="keyDeliverables">Livraisons Clés</label>
+                        <input type="text" class="form-control" id="keyDeliverables" [(ngModel)]="newExplorerPhase.keyDeliverables" name="keyDeliverables" required minlength="3" maxlength="100">
+                        <div *ngIf="explorationPhaseForm.submitted && !explorationPhaseForm.controls.keyDeliverables.valid" class="text-danger">
+                          Livraisons Clés est requis (3-100 caractères).
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="migrationModels">Modèles de Migration</label>
+                        <select class="form-control" id="migrationModels" [(ngModel)]="newExplorerPhase.migrationModels" name="migrationModels" required>
+                          <option *ngFor="let model of migrationModelsOptions" [value]="model">{{ model }}</option>
+                        </select>
+                        <div *ngIf="explorationPhaseForm.submitted && !explorationPhaseForm.controls.migrationModels.valid" class="text-danger">
+                          Veuillez sélectionner un modèle de migration.
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="standardProcessExecution">Exécution de Processus Standard</label>
+                        <select class="form-control" id="standardProcessExecution" [(ngModel)]="newExplorerPhase.standardProcessExecution" name="standardProcessExecution" required>
+                          <option *ngFor="let execution of standardProcessExecutionOptions" [value]="execution">{{ execution }}</option>
+                        </select>
+                        <div *ngIf="explorationPhaseForm.submitted && !explorationPhaseForm.controls.standardProcessExecution.valid" class="text-danger">
+                          Veuillez sélectionner une exécution de processus standard.
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="additionalObjects">Objets Additionnels</label>
+                        <textarea class="form-control" id="additionalObjects" [(ngModel)]="newExplorerPhase.additionalObjects" name="additionalObjects" required minlength="5" maxlength="500"></textarea>
+                        <div *ngIf="explorationPhaseForm.submitted && !explorationPhaseForm.controls.additionalObjects.valid" class="text-danger">
+                          Objets Additionnels est requis (5-500 caractères).
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="configurationValues">Valeurs de Configuration</label>
+                        <textarea class="form-control" id="configurationValues" [(ngModel)]="newExplorerPhase.configurationValues" name="configurationValues" required minlength="5" maxlength="500"></textarea>
+                        <div *ngIf="explorationPhaseForm.submitted && !explorationPhaseForm.controls.configurationValues.valid" class="text-danger">
+                          Valeurs de Configuration est requis (5-500 caractères).
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="backlogDocument">Document de Backlog</label>
+                        <input type="file" class="form-control-file" id="backlogDocument" (change)="onFileSelect($event, 'backlogDocument')" name="backlogDocument">
+                      </div>
+                      <div class="form-group">
+                        <label for="scenarioValidation">Validation de Scénario</label>
+                        <textarea class="form-control" id="scenarioValidation" [(ngModel)]="newExplorerPhase.scenarioValidation" name="scenarioValidation" required minlength="5" maxlength="500"></textarea>
+                        <div *ngIf="explorationPhaseForm.submitted && !explorationPhaseForm.controls.scenarioValidation.valid" class="text-danger">
+                          Validation de Scénario est requis (5-500 caractères).
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="submit" class="btn btn-primary" [disabled]="explorationPhaseForm.invalid">{{ selectedExplorePhase ? 'Mettre à Jour' : 'Ajouter' }}</button>
+                      <button type="button" class="btn btn-secondary" (click)="closeModalEx()">Fermer</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+          <button nbButton nbStepperPrevious>Prev</button>
+          <button nbButton nbStepperNext>Next</button>
+        </nb-step>
+        
+        <nb-step [label]="labelFive">
+            <ng-template #labelFive>Deploy</ng-template>
+            
+            <div class="col-md-12">
+              <nb-card class="inline-form-card">
+                <nb-card-header>
+                  <h2>Deploy Phase Form</h2>
+                </nb-card-header>
+                <nb-card-body>
+                  <br>
+                  <form [formGroup]="deployForm" (ngSubmit)="onSubmitDeploy()">
+                    <br>
+                    <div class="rowDiscover">
+                      <div class="col-sm-12">
+                        <div class="form-group">
+                          <label for="deploymentPlan" class="label">Deployment Plan</label>
+                          <textarea nbInput fullWidth id="deploymentPlan" formControlName="deploymentPlan" required></textarea>
+                        </div>
+                      </div>
+                    </div>
+          
+                    <div class="rowDiscover">
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="goLiveDate" class="label">Go-Live Date</label>
+                          <input type="date" nbInput fullWidth id="goLiveDate" formControlName="goLiveDate" required />
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="systemConfiguration" class="label">System Configuration</label>
+                          <textarea nbInput fullWidth id="systemConfiguration" formControlName="systemConfiguration" required></textarea>
+                        </div>
+                      </div>
+                    </div>
+          
+                    <div class="form-group">
+                      <label for="dataMigrationStrategy" class="label">Data Migration Strategy</label>
+                      <textarea nbInput fullWidth id="dataMigrationStrategy" formControlName="dataMigrationStrategy" required></textarea>
+                    </div>
+          
+                    <div class="form-group">
+                      <label for="userTrainingPlan" class="label">User Training Plan</label>
+                      <textarea nbInput fullWidth id="userTrainingPlan" formControlName="userTrainingPlan" required></textarea>
+                    </div>
+          
+                    <div class="form-group">
+                      <label for="cutoverPlan" class="label">Cutover Plan</label>
+                      <textarea nbInput fullWidth id="cutoverPlan" formControlName="cutoverPlan" required></textarea>
+                    </div>
+          
+                    <div class="form-group">
+                      <label for="supportPlan" class="label">Support Plan</label>
+                      <textarea nbInput fullWidth id="supportPlan" formControlName="supportPlan" required></textarea>
+                    </div>
+          
+                    <div class="form-group">
+                      <label for="goLiveChecklist" class="label">Go-Live Checklist</label>
+                      <input type="file" (change)="onFileSelectDeploy($event, 'goLiveChecklist')" />
+                      <p *ngIf="deployForm.get('goLiveChecklist').value">Selected Go Live Checklist: {{ deployForm.get('goLiveChecklist').value?.name }}</p>
+                                            </div>
+          
+                    <div class="form-group">
+                      <label for="postGoLiveMonitoringPlan" class="label">Post-Go-Live Monitoring Plan</label>
+                      <textarea nbInput fullWidth id="postGoLiveMonitoringPlan" formControlName="postGoLiveMonitoringPlan" required></textarea>
+                    </div>
+          
+                    <div class="form-group">
+                      <label for="changeManagementActivities" class="label">Change Management Activities</label>
+                      <textarea nbInput fullWidth id="changeManagementActivities" formControlName="changeManagementActivities" required></textarea>
+                    </div>
+          
+                    <div class="form-group">
+                      <label for="deploymentTeamMembers" class="label">Deployment Team Members</label>
+                      <textarea nbInput fullWidth id="deploymentTeamMembers" formControlName="deploymentTeamMembers" required></textarea>
+                    </div>
+          
+                    <div class="form-group">
+                      <label for="lessonsLearned" class="label">Lessons Learned</label>
+                      <textarea nbInput fullWidth id="lessonsLearned" formControlName="lessonsLearned" required></textarea>
+                    </div>
+          
+                    <div class="rowDiscover">
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="approvalStatus" class="label">Approval Status</label>
+                          <nb-select id="approvalStatus" formControlName="approvalStatus" placeholder="Select Status">
+                            <nb-option value="Approved" class="status-approved">Approved</nb-option>
+                            <nb-option value="Pending" class="status-pending">Pending</nb-option>
+                            <nb-option value="Rejected" class="status-rejected">Rejected</nb-option>
+                          </nb-select>
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="approvalDate" class="label">Approval Date</label>
+                          <input type="date" nbInput fullWidth id="approvalDate" formControlName="approvalDate" />
+                        </div>
+                      </div>
+                    </div>
+          
+                    <button nbButton status="primary" type="submit" [disabled]="deployForm.invalid">
+                        Submit
+                    </button>
+          
+                    <br>
+                  </form>
+                </nb-card-body>
+              </nb-card>
+            </div>
+            <br>
+          
+            <button nbButton nbStepperPrevious>Previous</button>
+            <button nbButton nbStepperNext>Next</button>
+        </nb-step>
+        
+        
+      </nb-stepper>
+    </nb-card-body>
+  
+  </nb-card>
+  

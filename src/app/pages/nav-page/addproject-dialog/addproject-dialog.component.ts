@@ -24,6 +24,7 @@ export class AddProjectDialogComponent {
     this.projectForm = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(5)]],
       statementWork: ['', [Validators.required, Validators.minLength(10)]],
+      status:['Not Started', [Validators.required]],
       projectManager: [''],
       dateSubmitted: [''],
       problematic: this.fb.group({
