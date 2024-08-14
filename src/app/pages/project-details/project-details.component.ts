@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { Projects } from '../../@core/data/Projects';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectsService } from '../../services/projects.service';
@@ -552,5 +552,20 @@ export class ProjectDetailsComponent implements OnInit {
 
   goBack(): void {
     this.router.navigate(['pages/projectslist']); 
+  }
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    const scrollUpBtn = document.getElementById('scrollUpBtn');
+    if (window.pageYOffset > 100) {
+      scrollUpBtn!.style.display = 'block';
+    } else {
+      scrollUpBtn!.style.display = 'none';
+    }
+  }
+
+  // Scroll to the top of the page
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }

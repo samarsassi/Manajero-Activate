@@ -108,7 +108,7 @@
         <div class="col-md-12">
             <nb-card class="inline-form-card">
               <nb-card-header>
-                <h2>Discovery Phase Form</h2>
+                <h2>Discover Phase </h2>
                 </nb-card-header>
             <nb-card-body>
               <br>
@@ -360,10 +360,10 @@
           <ng-template #labelFour>Explore</ng-template>
         
           <div class="container mt-4">
-            <h1 class="text-center mb-4">Phases d'Exploration</h1>
+            <h1 class="text-center mb-4">Explore Phase</h1>
         
             <div class="text-center mb-4">
-              <button (click)="openModalEx()" class="btn btn-primary btn-lg">Ajouter une nouvelle Phase</button>
+              <button (click)="openModalEx()" class="btn btn-primary btn-lg">Add a new explore card</button>
             </div>
         
             <div class="row">
@@ -381,8 +381,8 @@
                       <p class="card-text"><strong>Validation de Scénario:</strong> {{ phase.scenarioValidation }}</p>
                     </div>
                     <div class="d-flex justify-content-between mt-3">
-                      <button (click)="selectExplorePhase(phase); $event.stopPropagation()" class="btn btn-warning btn-sm">Éditer</button>
-                      <button (click)="deleteExplorePhase(phase.id); $event.stopPropagation()" class="btn btn-danger btn-sm">Supprimer</button>
+                      <button (click)="selectExplorePhase(phase); $event.stopPropagation()" class="btn btn-warning btn-sm">Edit</button>
+                      <button (click)="deleteExplorePhase(phase.id); $event.stopPropagation()" class="btn btn-danger btn-sm">Delete</button>
                     </div>
                   </div>
                 </div>
@@ -480,7 +480,7 @@
             <div class="col-md-12">
               <nb-card class="inline-form-card">
                 <nb-card-header>
-                  <h2>Deploy Phase Form</h2>
+                  <h2>Deploy Phase</h2>
                 </nb-card-header>
                 <nb-card-body>
                   <br>
@@ -592,6 +592,8 @@
         
         
       </nb-stepper>
+      <button id="scrollUpBtn" title="Go to top" (click)="scrollToTop()">↑</button>
+
     </nb-card-body>
   
   </nb-card>
