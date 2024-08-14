@@ -9,6 +9,7 @@ import { ActivateComponent } from './activate/activate.component';
 import { NavPageComponent } from './nav-page/nav-page.component';
 import { SectionsComponent } from './sections/sections.component';
 import { ProjectListComponent } from './project-list/project-list.component';
+import { ProjectDetailsComponent } from './project-details/project-details.component';
 
 const routes: Routes = [
   { path: 'pages/edit', component: SectionsComponent },
@@ -33,9 +34,14 @@ const routes: Routes = [
       component: ProjectListComponent,
     },
     {
-    path: 'activate',
-    component: ActivateComponent,
+      path: 'project-details/:id',
+      component:ProjectDetailsComponent
     },
+    {
+      path: 'activate',
+      component: ActivateComponent,
+    },
+    
     {
       path: 'iot-dashboard',
       component: DashboardComponent,

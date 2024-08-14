@@ -18,6 +18,7 @@
     border-radius: 8px;
     width: 90%;
     max-width: 600px;
+    max-height: 700px;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     position: relative;
@@ -50,14 +51,21 @@
   
   .close-button:hover {
     color: #000;
+    cursor: pointer;
   }
   
   .dialog-body {
-    margin-top: 15px;
+    margin-top: 5px;
+  }
+
+  .archived {
+    display: flex;
+    align-items: center; /* Aligns the label and checkbox vertically center */
+    gap: 10px; /* Adds space between the label and checkbox */
   }
   
   .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
   
   .form-group label {
@@ -145,6 +153,7 @@
     }
   
     .form-group input,
+    .form-group select,
     .form-group textarea {
       font-size: 0.875rem;
       padding: 10px;
@@ -158,9 +167,10 @@
   
   @media (max-width: 480px) {
     .dialog {
-      width: 100%;
-      max-width: 90%;
-      padding: 10px;
+      width: 95%;
+      max-width: 60%;
+      padding: 15px;
+      max-height: 70%;
     }
   
     .dialog-header h2 {

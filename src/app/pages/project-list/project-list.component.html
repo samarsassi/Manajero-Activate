@@ -1,15 +1,52 @@
-<nb-card>
-    <nb-card-header>
+<nb-card style="padding-top: 20px; padding-bottom: 20px;">
+    <!-- <nb-card-header>
         Projects List
     </nb-card-header>
 
     <nb-card-body>
-        <ng2-smart-table [settings]="settings" [source]="source" (saveConfirm)="onSaveConfirm($event)" (deleteConfirm)="onDeleteConfirm($event)">
+        <ng2-smart-table [settings]="settings" [source]="source" 
+        (saveConfirm)="onSaveConfirm($event)" 
+        (deleteConfirm)="onDeleteConfirm($event)"
+        (userRowSelect)="onRowSelect($event)" >
         </ng2-smart-table>
     </nb-card-body>
     <nb-card-footer>
         <button class="btn-go-back" (click)="goBack()">
             <nb-icon icon="arrow-left-outline"></nb-icon>
         </button>
-      </nb-card-footer>
+      </nb-card-footer> -->
+      <div class="toggle-container">
+        <span class="icon" *ngIf="!showArchived">
+            <i class="fas fa-unlock"></i>
+        </span> <!-- Unlocked icon -->
+        <label class="switch">
+          <input type="checkbox" (change)="onToggleChange($event)">
+          <span class="slider"></span>
+        </label>
+        <span class="icon" *ngIf="showArchived">
+            <i class="fas fa-lock"></i>
+        </span> <!-- Locked icon -->
+        
+      </div>
+      
+      <div class="card-container">
+        <div class="card" *ngFor="let project of filteredProjects" (click)="onCardSelect(project)">
+          <div class="header">{{ project.title }}</div>
+          <div class="info">
+            <p class="date-submitted">Creation Date: {{ project.dateSubmitted | date: 'shortDate' }}</p>
+            <p class="title">{{ project.statementWork }}</p>
+            
+          </div>
+          <div class="footer">
+            <p class="tag">{{ project.projectManager }}</p>
+            <div class="status" [ngClass]="getStatusClass(project.status)">
+              {{ project.status }}
+            </div>
+          </div>
+        </div>
+      </div>
+      
+            <button class="btn-go-back" (click)="goBack()">
+                <nb-icon icon="arrow-left-outline"></nb-icon>
+            </button>
 </nb-card>

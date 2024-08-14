@@ -21,9 +21,11 @@ import {
   NbToastrModule,
   NbWindowModule,
 } from '@nebular/theme';
+import { ActivateComponent } from './pages/activate/activate.component';
+import { ProjectDetailsComponent } from './pages/project-details/project-details.component';
 
 @NgModule({
-  declarations: [AppComponent, ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -40,6 +42,7 @@ import {
     }),
     CoreModule.forRoot(),
     ThemeModule.forRoot(),
+    
   ],
   bootstrap: [AppComponent],
 })

@@ -124,4 +124,8 @@ export class SectionsComponent implements OnInit {
       this.currentStep--;
     }
   }
+
+  goBack(): void {
+    this.router.navigate(['pages/activate']); 
+  }
 }
