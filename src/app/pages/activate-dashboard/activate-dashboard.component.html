@@ -1,0 +1,67 @@
+<div class="dashboard">
+  <!-- List of Projects by Name -->
+  <nb-card>
+    <nb-card-header>Projects</nb-card-header>
+    <nb-card-body>
+      <ul>
+        <li *ngFor="let project of projectsByName | keyvalue">
+          <a (click)="navigateToProjectKPIs(project.key)">{{ project.key }}</a>
+
+        </li>
+      </ul>
+    </nb-card-body>
+  </nb-card>
+
+  <!-- Archived vs. Non-Archived Projects -->
+  <nb-card>
+    <nb-card-header>Archived vs. Non-Archived Projects</nb-card-header>
+    <nb-card-body>
+      <div class="pie-chart">
+        <div class="pie-segment" style="--value: {{archivedPercentage}}%; --color: #007bff;"></div>
+        <div class="pie-segment" style="--value: {{nonArchivedPercentage}}%; --color: #28a745;"></div>
+      </div>
+      <div class="legend">
+        <div class="legend-item" style="background-color: #007bff;">Archived: {{archivedCount}}</div>
+        <div class="legend-item" style="background-color: #28a745;">Non-Archived: {{nonArchivedCount}}</div>
+      </div>
+    </nb-card-body>
+  </nb-card>
+
+  <!-- Projects Managed by Each Project Manager -->
+  <nb-card>
+    <nb-card-header>Project Managers</nb-card-header>
+    <nb-card-body>
+      <ngx-charts-bar-vertical
+        [results]="chartData"
+        [view]="chartView"
+        [xAxis]="true"
+        [yAxis]="true"
+        [legend]="true"
+        [showXAxisLabel]="true"
+        [showYAxisLabel]="true"
+        [xAxisLabel]="'Project Managers'"
+        [yAxisLabel]="'Number of Projects'">
+      </ngx-charts-bar-vertical>
+    </nb-card-body>
+  </nb-card>
+
+  <!-- Projects by Status -->
+  <nb-card>
+    <nb-card-header>
+      <h3>Projects by Status</h3>
+    </nb-card-header>
+    <nb-card-body>
+      <ul class="status-list">
+        <li *ngFor="let status of projectsByStatus | keyvalue" class="status-item">
+          <span class="status-key">{{ status.key }}:</span>
+          <span class="status-value">{{ status.value }}</span>
+        </li>
+      </ul>
+    </nb-card-body>
+  </nb-card>
+</div>
+  <!-- Button to Go Back to the Previous Page -->
+  <button class="btn-go-back" (click)="goBack()">
+    <nb-icon icon="arrow-left-outline"></nb-icon>
+  </button>
+

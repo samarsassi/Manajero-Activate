@@ -33,6 +33,7 @@ export class ProjectDetailsComponent implements OnInit {
   showphase: boolean = false;
   backlogDocumentFile: File | null = null;
   backlogDocumentFileName: string | null = null;  // For displaying the file name
+  explorationPhaseForm: FormGroup;
 
   migrationModelsOptions: string[] = ['System Copy', 'Data Migration', 'Technical Migration','Functional Migration','Cloud Migration','Selective Data Transition'];
   standardProcessExecutionOptions: string[] = [
@@ -48,7 +49,8 @@ export class ProjectDetailsComponent implements OnInit {
 
   // Project Preparation Phase
   projectPreparations: any[] = [];
-  newProjectPreparation: any = {};
+  newProjectPreparation: FormGroup;
+
   showModal: boolean = false;
   selectedProjectPreparation: any = null;
 
@@ -122,6 +124,35 @@ export class ProjectDetailsComponent implements OnInit {
       phaseEndDate: [''],
       phaseStatus: ['']
     });
+
+    this.newProjectPreparation = this.fb.group({
+      startDate: ['', Validators.required],
+      endDate: ['', Validators.required],
+      projectManager: ['', Validators.required],
+      developer: ['', Validators.required],
+      businessAnalyst: ['', Validators.required],
+      projectObjectives: ['', Validators.required],
+      initialPlanning: ['', Validators.required],
+      activitiesValidation: ['', Validators.required],
+      rolesResponsibilities: ['', Validators.required],
+      governanceProcedures: ['', Validators.required],
+      riskAssessment: ['', Validators.required],
+      budget: ['', Validators.required],
+      stakeholderCommunication: ['', Validators.required],
+      prepprojectid: ['', Validators.required]
+    });
+    this.explorationPhaseForm = this.fb.group({
+      finalizedBusinessProcesses: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100), Validators.pattern('[A-Za-z\\s]+')]],
+      keyDeliverables: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
+      migrationModels: ['', Validators.required],
+      standardProcessExecution: ['', Validators.required],
+      additionalObjects: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(500)]],
+      configurationValues: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(500)]],
+      backlogDocument: [null],
+      scenarioValidation: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(500)]],
+      exprojectid: ['', Validators.required]
+    });
+  
   }
 
   redirectToPagesEdit() {
@@ -169,17 +200,7 @@ export class ProjectDetailsComponent implements OnInit {
         phaseStatus: this.discoverForm.get('phaseStatus')?.value,
          roadmap: this.roadmapFile ? this.roadmapFile.name : ''
       };
-      this.discoverPhaseService.addDiscover(discoverPhase).subscribe(
-        response => {
-          this.toastrService.show('Discover Phase submitted successfully!', 'Success');
-          this.stepper.next();
-          this.isSubmitting = false;
-        },
-        error => {
-          console.error('Error submitting form', error);
-          this.isSubmitting = false;
-        }
-      );
+      this.discoverPhaseService.addDiscover(discoverPhase);
 
       const updatedProject = { ...this.project, discoverPhase: discoverPhase };
 
@@ -222,8 +243,6 @@ export class ProjectDetailsComponent implements OnInit {
         // Add the DeployPhase
         this.deployPhaseService.addDeploy(deployPhase).subscribe(
             response => {
-                this.toastrService.show('Deploy Phase submitted successfully!', 'Success');
-
                 // Integrate the new or updated deployPhase into the project
                 const updatedProject = {
                     ...this.project,
@@ -258,7 +277,9 @@ export class ProjectDetailsComponent implements OnInit {
   getData() {
     this.ExplorePhaseService.getAllExplorePhases().subscribe(
       (data: ExplorePhase[]) => {
-        this.explorephases = data.map(item => ({ ...item, showDetails: false }));
+        this.explorephases = data
+          .filter(item => item.projectid === this.project.id) // Filter by projectId
+          .map(item => ({ ...item, showDetails: false })); // Add showDetails property
       },
       (error) => {
         console.error('Error loading explore phases:', error);
@@ -266,23 +287,55 @@ export class ProjectDetailsComponent implements OnInit {
     );
   }
 
-  addOrUpdateexplorephase() {
-    if (this.selectedExplorePhase) {
-      this.ExplorePhaseService.updateExplorePhase(this.newExplorerPhase).subscribe(() => {
-        this.getData();
-        this.closeModalEx();
-      });
-    } else {
-      this.ExplorePhaseService.createExplorePhase(this.newExplorerPhase).subscribe(() => {
-        this.getData();
-        this.closeModalEx();
-      });
-    }
+
+  addOrUpdateExplorephase() {
+      const explorePhaseData: ExplorePhase = {
+        finalizedBusinessProcesses: this.explorationPhaseForm.get('finalizedBusinessProcesses')?.value,
+        keyDeliverables: this.explorationPhaseForm.get('keyDeliverables')?.value,
+        migrationModels: this.explorationPhaseForm.get('migrationModels')?.value,
+        standardProcessExecution: this.explorationPhaseForm.get('standardProcessExecution')?.value,
+        additionalObjects: this.explorationPhaseForm.get('additionalObjects')?.value,
+        configurationValues: this.explorationPhaseForm.get('configurationValues')?.value,
+        backlogDocument: this.explorationPhaseForm.get('backlogDocument')?.value,
+        scenarioValidation: this.explorationPhaseForm.get('scenarioValidation')?.value,
+        projectid: this.project.id // Ensure the project ID is included
+      };
+  
+      if (this.selectedExplorePhase) {
+        // Update existing ExplorePhase
+        this.ExplorePhaseService.updateExplorePhase(explorePhaseData).subscribe(
+          () => {
+            this.getData();
+            this.closeModalEx();
+            this.toastrService.success('Explore phase updated successfully');
+          },
+          (error) => {
+            console.error('Error updating explore phase', error);
+            this.toastrService.danger('Failed to update explore phase');
+          }
+        );
+      } else {
+        // Create new ExplorePhase
+        this.ExplorePhaseService.createExplorePhase(explorePhaseData).subscribe(
+          () => {
+            this.getData();
+            this.closeModalEx();
+            this.toastrService.success('Explore phase created successfully');
+          },
+          (error) => {
+            console.error('Error creating explore phase', error);
+            this.toastrService.danger('Failed to create explore phase');
+          }
+        );
+      }
+    
   }
+  
+  
 
   openModalEx() {
     this.showphase = true;
-    this.newExplorerPhase = {};
+    this.explorationPhaseForm.reset();
     this.selectedExplorePhase = null;
   }
 
@@ -312,63 +365,62 @@ export class ProjectDetailsComponent implements OnInit {
   loadProjectPreparations() {
     this.projectPreparationService.getAllProjectPreparations().subscribe(
       (data: any) => {
-        this.projectPreparations = data.map(item => ({ ...item, showDetails: false }));
+        this.projectPreparations = data
+          .filter(item => item.projectid === this.project.id)  // Filter by projectId
+          .map(item => ({ ...item, showDetails: false }));     // Add showDetails property
+          
         console.log('Loaded project preparations:', this.projectPreparations);
       },
       (error) => {
         console.error('Error loading project preparations:', error);
       }
     );
-  }
+}
+
 
   openModal() {
     this.showModal = true;
-    this.newProjectPreparation = {};
+    this.newProjectPreparation.reset(); // Reset the form controls
     this.selectedProjectPreparation = null;
   }
-
+  
   closeModal() {
     this.showModal = false;
   }
 
   addOrUpdateProjectPreparation() {
-    if (this.selectedProjectPreparation && this.project) {
-      console.log('Updating preparation:', this.newProjectPreparation);
-      this.projectPreparationService.updateProjectPreparation(this.newProjectPreparation).subscribe(
-        (response) => {
-          console.log('Update response:', response);
-          this.loadProjectPreparations();
-          this.closeModal();
-        },
-        (error) => {
-          console.error('Update error:', error);
-        }
-      );
+    const projectPreparation: ProjectPreparation = {
+      startDate: this.newProjectPreparation.get('startDate')?.value,
+      endDate: this.newProjectPreparation.get('endDate')?.value,
+      projectManager: this.newProjectPreparation.get('projectManager')?.value,
+      developer: this.newProjectPreparation.get('developer')?.value,
+      businessAnalyst: this.newProjectPreparation.get('businessAnalyst')?.value,
+      projectObjectives: this.newProjectPreparation.get('projectObjectives')?.value,
+      initialPlanning: this.newProjectPreparation.get('initialPlanning')?.value,
+      activitiesValidation: this.newProjectPreparation.get('activitiesValidation')?.value,
+      rolesResponsibilities: this.newProjectPreparation.get('rolesResponsibilities')?.value,
+      governanceProcedures: this.newProjectPreparation.get('governanceProcedures')?.value,
+      riskAssessment: this.newProjectPreparation.get('riskAssessment')?.value,
+      budget: this.newProjectPreparation.get('budget')?.value,
+      stakeholderCommunication: this.newProjectPreparation.get('stakeholderCommunication')?.value,
+      projectid:this.project.id
+    };
+    if (this.selectedProjectPreparation) {
+     console.log(this.newProjectPreparation);
+      this.projectPreparationService.updateProjectPreparation(projectPreparation).subscribe(() => {
+        this.loadProjectPreparations();
+        this.closeModal();
+      });
     } else {
-      this.isSubmitting = true;
-      const projectPreparation: ProjectPreparation = this.newProjectPreparation;
-      console.log('Adding new preparation:', this.newProjectPreparation);
-     
-      const updatedProject = { ...this.project,  projectPreparation: this.project.preparationPhase };
-
-      // Submit the updated project
-      this.projectsService.updateProject(updatedProject).subscribe(
-        response => {
-          this.toastrService.show('Preperation Phase submitted successfully!', 'Success');
-          this.stepper.next();
-          this.isSubmitting = false;
-          console.log(this.project);
-          this.loadProjectPreparations();
-          this.closeModal();
-        },
-        error => {
-          console.error('Error submitting form', error);
-          this.isSubmitting = false;
-        }
-      );
+      this.projectPreparationService.addProjectPreparation(projectPreparation).subscribe(() => {
       
+        console.log(projectPreparation, this.project);
+        this.loadProjectPreparations();
+        this.closeModal();
+      });
     }
   }
+
 
   selectProjectPreparation(preparation: any) {
     this.selectedProjectPreparation = preparation;

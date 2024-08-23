@@ -1,5 +1,6 @@
 export interface ExplorePhase {
-    id: string;
+    id?: string;
+    projectid: string;
     finalizedBusinessProcesses: string;
     keyDeliverables: string;
     migrationModels: string;

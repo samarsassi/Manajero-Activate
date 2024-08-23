@@ -10,6 +10,8 @@ import { NavPageComponent } from './nav-page/nav-page.component';
 import { SectionsComponent } from './sections/sections.component';
 import { ProjectListComponent } from './project-list/project-list.component';
 import { ProjectDetailsComponent } from './project-details/project-details.component';
+import { ActivateDashboardComponent } from './activate-dashboard/activate-dashboard.component';
+import { ProjectsKpisComponent } from './projects-kpis/projects-kpis.component';
 
 const routes: Routes = [
   { path: 'pages/edit', component: SectionsComponent },
@@ -35,11 +37,19 @@ const routes: Routes = [
     },
     {
       path: 'project-details/:id',
-      component:ProjectDetailsComponent
+      component:ProjectDetailsComponent,
     },
+    {path: 'kpis/:id',
+      component: ProjectsKpisComponent
+    },
+    
     {
       path: 'activate',
       component: ActivateComponent,
+    },
+    {
+      path: 'activate-dashboard',
+      component: ActivateDashboardComponent,
     },
     
     {

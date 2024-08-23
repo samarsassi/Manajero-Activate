@@ -2,6 +2,7 @@
 
 export interface Realize {
     id?: string;
+    projectid: string;
     configName: string;
     configStatus: string;
     taskName: string;
