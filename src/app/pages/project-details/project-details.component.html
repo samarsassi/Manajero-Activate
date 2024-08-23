@@ -285,61 +285,62 @@
                                 </div>
                                 <form (ngSubmit)="addOrUpdateProjectPreparation()">
 
-                                  
-                                    <div class="modal-body">
-                                      <div class="form-group">
-                                        <label for="startDate">Start Date</label>
-                                        <input type="date" class="form-control" id="startDate" [(ngModel)]="newProjectPreparation.startDate" name="startDate" required>
-                                      </div>
-                                      <div class="form-group">
-                                        <label for="endDate">End Date</label>
-                                        <input type="date" class="form-control" id="endDate" [(ngModel)]="newProjectPreparation.endDate" name="endDate" required>
-                                      </div>
-                                      <div class="form-group">
-                                        <label for="projectManager">Project Manager</label>
-                                        <input type="text" class="form-control" id="projectManager" [(ngModel)]="newProjectPreparation.projectManager" name="projectManager" required>
-                                      </div>
-                                      <div class="form-group">
-                                        <label for="developer">Developer</label>
-                                        <input type="text" class="form-control" id="developer" [(ngModel)]="newProjectPreparation.developer" name="developer" required>
-                                      </div>
-                                      <div class="form-group">
-                                        <label for="businessAnalyst">Business Analyst</label>
-                                        <input type="text" class="form-control" id="businessAnalyst" [(ngModel)]="newProjectPreparation.businessAnalyst" name="businessAnalyst" required>
-                                      </div>
-                                      <div class="form-group">
-                                        <label for="projectObjectives">Project Objectives</label>
-                                        <textarea class="form-control" id="projectObjectives" [(ngModel)]="newProjectPreparation.projectObjectives" name="projectObjectives" required></textarea>
-                                      </div>
-                                      <div class="form-group">
-                                        <label for="initialPlanning">Initial Planning</label>
-                                        <textarea class="form-control" id="initialPlanning" [(ngModel)]="newProjectPreparation.initialPlanning" name="initialPlanning" required></textarea>
-                                      </div>
-                                      <div class="form-group">
-                                        <label for="activitiesValidation">Activities Validation</label>
-                                        <textarea class="form-control" id="activitiesValidation" [(ngModel)]="newProjectPreparation.activitiesValidation" name="activitiesValidation" required></textarea>
-                                      </div>
-                                      <div class="form-group">
-                                        <label for="rolesResponsibilities">Roles and Responsibilities</label>
-                                        <textarea class="form-control" id="rolesResponsibilities" [(ngModel)]="newProjectPreparation.rolesResponsibilities" name="rolesResponsibilities" required></textarea>
-                                      </div>
-                                      <div class="form-group">
-                                        <label for="governanceProcedures">Governance Procedures</label>
-                                        <textarea class="form-control" id="governanceProcedures" [(ngModel)]="newProjectPreparation.governanceProcedures" name="governanceProcedures" required></textarea>
-                                      </div>
-                                      <div class="form-group">
-                                        <label for="riskAssessment">Risk Assessment</label>
-                                        <textarea class="form-control" id="riskAssessment" [(ngModel)]="newProjectPreparation.riskAssessment" name="riskAssessment" required></textarea>
-                                      </div>
-                                      <div class="form-group">
-                                        <label for="budget">Budget</label>
-                                        <input type="number" class="form-control" id="budget" [(ngModel)]="newProjectPreparation.budget" name="budget" required>
-                                      </div>
-                                      <div class="form-group">
-                                        <label for="stakeholderCommunication">Stakeholder Communication</label>
-                                        <textarea class="form-control" id="stakeholderCommunication" [(ngModel)]="newProjectPreparation.stakeholderCommunication" name="stakeholderCommunication" required></textarea>
-                                      </div>
+                                  <form [formGroup]="newProjectPreparation">
+                                  <div class="modal-body">
+                                    <div class="form-group">
+                                      <label for="startDate">Start Date</label>
+                                      <input type="date" class="form-control" id="startDate" formControlName="startDate" required>
                                     </div>
+                                    <div class="form-group">
+                                      <label for="endDate">End Date</label>
+                                      <input type="date" class="form-control" id="endDate" formControlName="endDate" required>
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="projectManager">Project Manager</label>
+                                      <input type="text" class="form-control" id="projectManager" formControlName="projectManager" required>
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="developer">Developer</label>
+                                      <input type="text" class="form-control" id="developer" formControlName="developer" required>
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="businessAnalyst">Business Analyst</label>
+                                      <input type="text" class="form-control" id="businessAnalyst" formControlName="businessAnalyst" required>
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="projectObjectives">Project Objectives</label>
+                                      <textarea class="form-control" id="projectObjectives" formControlName="projectObjectives" required></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="initialPlanning">Initial Planning</label>
+                                      <textarea class="form-control" id="initialPlanning" formControlName="initialPlanning" required></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="activitiesValidation">Activities Validation</label>
+                                      <textarea class="form-control" id="activitiesValidation" formControlName="activitiesValidation" required></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="rolesResponsibilities">Roles and Responsibilities</label>
+                                      <textarea class="form-control" id="rolesResponsibilities" formControlName="rolesResponsibilities" required></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="governanceProcedures">Governance Procedures</label>
+                                      <textarea class="form-control" id="governanceProcedures" formControlName="governanceProcedures" required></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="riskAssessment">Risk Assessment</label>
+                                      <textarea class="form-control" id="riskAssessment" formControlName="riskAssessment" required></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="budget">Budget</label>
+                                      <input type="number" class="form-control" id="budget" formControlName="budget" required>
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="stakeholderCommunication">Stakeholder Communication</label>
+                                      <textarea class="form-control" id="stakeholderCommunication" formControlName="stakeholderCommunication" required></textarea>
+                                    </div>
+                                  </div>
+                                  </form>
                                   
                                     <div class="modal-footer">
                                       <button type="submit" class="btn btn-primary">{{ selectedProjectPreparation ? 'Update' : 'Add' }} Project Preparation</button>
@@ -395,76 +396,58 @@
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title">{{ selectedExplorePhase ? 'Éditer' : 'Ajouter' }} une Phase d'Exploration</h5>
+                    <h5 class="modal-title">{{ selectedExplorePhase ? 'Edit' : 'Add' }} une Phase d'Exploration</h5>
                     <button type="button" class="close" (click)="closeModalEx()" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
-                  <form (ngSubmit)="addOrUpdateExplorePhase()" #explorationPhaseForm="ngForm">
-                    <div class="modal-body">
-                      <div class="form-group">
-                        <label for="finalizedBusinessProcesses">Processus Métiers Finalisés</label>
-                        <input type="text" class="form-control" id="finalizedBusinessProcesses" [(ngModel)]="newExplorerPhase.finalizedBusinessProcesses" name="finalizedBusinessProcesses" required minlength="3" maxlength="100" pattern="[A-Za-z\s]+">
-                        <div *ngIf="explorationPhaseForm.submitted && !explorationPhaseForm.controls.finalizedBusinessProcesses.valid" class="text-danger">
-                          Processus Métiers Finalisés est requis (3-100 caractères, lettres uniquement).
+                  
+
+                    <form [formGroup]="explorationPhaseForm" (ngSubmit)="addOrUpdateExplorePhase()" >
+                      <div class="modal-body">
+                        <div class="form-group">
+                          <label for="finalizedBusinessProcesses">Processus Métiers Finalisés</label>
+                          <input type="text" class="form-control" id="finalizedBusinessProcesses" formControlName="finalizedBusinessProcesses" required minlength="3" maxlength="100" pattern="[A-Za-z\s]+">
+                        </div>
+                        <div class="form-group">
+                          <label for="keyDeliverables">Livraisons Clés</label>
+                          <input type="text" class="form-control" id="keyDeliverables" formControlName="keyDeliverables" required minlength="3" maxlength="100">
+                        </div>
+                        <div class="form-group">
+                          <label for="migrationModels">Modèles de Migration</label>
+                          <select class="form-control" id="migrationModels" formControlName="migrationModels" required>
+                            <option *ngFor="let model of migrationModelsOptions" [value]="model">{{ model }}</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <label for="standardProcessExecution">Exécution de Processus Standard</label>
+                          <select class="form-control" id="standardProcessExecution" formControlName="standardProcessExecution" required>
+                            <option *ngFor="let execution of standardProcessExecutionOptions" [value]="execution">{{ execution }}</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <label for="additionalObjects">Objets Additionnels</label>
+                          <textarea class="form-control" id="additionalObjects" formControlName="additionalObjects" required minlength="5" maxlength="500"></textarea>
+                        </div>
+                        <div class="form-group">
+                          <label for="configurationValues">Valeurs de Configuration</label>
+                          <textarea class="form-control" id="configurationValues" formControlName="configurationValues" required minlength="5" maxlength="500"></textarea>
+                        </div>
+                        <div class="form-group">
+                          <label for="backlogDocument">Document de Backlog</label>
+                          <input type="file" class="form-control-file" id="backlogDocument" (change)="onFileSelect($event, 'backlogDocument')" formControlName="backlogDocument">
+                        </div>
+                        <div class="form-group">
+                          <label for="scenarioValidation">Validation de Scénario</label>
+                          <textarea class="form-control" id="scenarioValidation" formControlName="scenarioValidation" required minlength="5" maxlength="500"></textarea>
                         </div>
                       </div>
-                      <div class="form-group">
-                        <label for="keyDeliverables">Livraisons Clés</label>
-                        <input type="text" class="form-control" id="keyDeliverables" [(ngModel)]="newExplorerPhase.keyDeliverables" name="keyDeliverables" required minlength="3" maxlength="100">
-                        <div *ngIf="explorationPhaseForm.submitted && !explorationPhaseForm.controls.keyDeliverables.valid" class="text-danger">
-                          Livraisons Clés est requis (3-100 caractères).
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label for="migrationModels">Modèles de Migration</label>
-                        <select class="form-control" id="migrationModels" [(ngModel)]="newExplorerPhase.migrationModels" name="migrationModels" required>
-                          <option *ngFor="let model of migrationModelsOptions" [value]="model">{{ model }}</option>
-                        </select>
-                        <div *ngIf="explorationPhaseForm.submitted && !explorationPhaseForm.controls.migrationModels.valid" class="text-danger">
-                          Veuillez sélectionner un modèle de migration.
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label for="standardProcessExecution">Exécution de Processus Standard</label>
-                        <select class="form-control" id="standardProcessExecution" [(ngModel)]="newExplorerPhase.standardProcessExecution" name="standardProcessExecution" required>
-                          <option *ngFor="let execution of standardProcessExecutionOptions" [value]="execution">{{ execution }}</option>
-                        </select>
-                        <div *ngIf="explorationPhaseForm.submitted && !explorationPhaseForm.controls.standardProcessExecution.valid" class="text-danger">
-                          Veuillez sélectionner une exécution de processus standard.
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label for="additionalObjects">Objets Additionnels</label>
-                        <textarea class="form-control" id="additionalObjects" [(ngModel)]="newExplorerPhase.additionalObjects" name="additionalObjects" required minlength="5" maxlength="500"></textarea>
-                        <div *ngIf="explorationPhaseForm.submitted && !explorationPhaseForm.controls.additionalObjects.valid" class="text-danger">
-                          Objets Additionnels est requis (5-500 caractères).
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label for="configurationValues">Valeurs de Configuration</label>
-                        <textarea class="form-control" id="configurationValues" [(ngModel)]="newExplorerPhase.configurationValues" name="configurationValues" required minlength="5" maxlength="500"></textarea>
-                        <div *ngIf="explorationPhaseForm.submitted && !explorationPhaseForm.controls.configurationValues.valid" class="text-danger">
-                          Valeurs de Configuration est requis (5-500 caractères).
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label for="backlogDocument">Document de Backlog</label>
-                        <input type="file" class="form-control-file" id="backlogDocument" (change)="onFileSelect($event, 'backlogDocument')" name="backlogDocument">
-                      </div>
-                      <div class="form-group">
-                        <label for="scenarioValidation">Validation de Scénario</label>
-                        <textarea class="form-control" id="scenarioValidation" [(ngModel)]="newExplorerPhase.scenarioValidation" name="scenarioValidation" required minlength="5" maxlength="500"></textarea>
-                        <div *ngIf="explorationPhaseForm.submitted && !explorationPhaseForm.controls.scenarioValidation.valid" class="text-danger">
-                          Validation de Scénario est requis (5-500 caractères).
-                        </div>
-                      </div>
-                    </div>
+                    </form>
+
                     <div class="modal-footer">
-                      <button type="submit" class="btn btn-primary" [disabled]="explorationPhaseForm.invalid">{{ selectedExplorePhase ? 'Mettre à Jour' : 'Ajouter' }}</button>
+                      <button type="submit" class="btn btn-primary">{{ selectedExplorePhase ? 'Edit' : 'Add' }}</button>
                       <button type="button" class="btn btn-secondary" (click)="closeModalEx()">Fermer</button>
                     </div>
-                  </form>
                 </div>
               </div>
             </div>

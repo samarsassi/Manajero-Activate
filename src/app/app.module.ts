@@ -23,6 +23,8 @@ import {
 } from '@nebular/theme';
 import { ActivateComponent } from './pages/activate/activate.component';
 import { ProjectDetailsComponent } from './pages/project-details/project-details.component';
+import { ActivateDashboardComponent } from './pages/activate-dashboard/activate-dashboard.component';
+
 
 @NgModule({
   declarations: [AppComponent],

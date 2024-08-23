@@ -1,30 +1,29 @@
 
 <div class="row">
-    <div class="col-lg-12">
-      <nb-card>
-        <nb-card-header>Navigation</nb-card-header>
-        <nb-card-body>
-            <div class="button-container">
-                <button class="btn btn-dashboard">
-                   <nb-icon icon="home-outline"></nb-icon>
-                  Dashboard
-                </button>
-                <button class="btn btn-tuto" (click)="navigateToTuto()">
-                  <nb-icon icon="book-outline"></nb-icon>
-                 SAP Activate
-               </button>
-                <button class="btn btn-projects" (click)="navigateToProjectList()">
-                    <nb-icon icon="list-outline"></nb-icon>
-                  List Projects
-                </button>
-                <button class="btn btn-create" (click)="open()">
-                    <nb-icon icon="plus-circle-outline"></nb-icon>
-                  Create Project
-                </button>
-              </div>
-              
-        </nb-card-body>
-      </nb-card>
-    </div>
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>Navigation</nb-card-header>
+      <nb-card-body>
+          <div class="button-container">
+              <button class="btn btn-dashboard" (click)="navigateToDash()">
+                 <nb-icon icon="home-outline"></nb-icon>
+                Dashboard
+              </button>
+              <button class="btn btn-tuto" (click)="navigateToTuto()">
+                <nb-icon icon="book-outline"></nb-icon>
+               SAP Activate
+             </button>
+              <button class="btn btn-projects" (click)="navigateToProjectList()">
+                  <nb-icon icon="list-outline"></nb-icon>
+                List Projects
+              </button>
+              <button class="btn btn-create" (click)="open()">
+                  <nb-icon icon="plus-circle-outline"></nb-icon>
+                Create Project
+              </button>
+            </div>
+            
+      </nb-card-body>
+    </nb-card>
   </div>
-  
+</div>

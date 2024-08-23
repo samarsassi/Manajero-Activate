@@ -1,5 +1,6 @@
 export interface ProjectPreparation {
     id?: string;
+    projectid: string;
     startDate: string;
     endDate: string;
     projectManager: string;

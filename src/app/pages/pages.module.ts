@@ -13,6 +13,10 @@ import { SectionsModule } from './sections/Sections.module';
 import { ProjectListModule } from './project-list/project-list.module';
 import { StatsComponent } from './stats/stats.component';
 import { ProjectDetailsModule } from './project-details/project-details.module';
+import { ActivateDashboardModule } from './activate-dashboard/ActivateDashboard.module';
+import { ProjectsKpisComponent } from './projects-kpis/projects-kpis.component';
+import { ProjectsKpisModule } from './projects-kpis/projects-kpis.module';
+// import { ActivateDashboardModule } from './activate-dashboard/ActivateDashboard.module';
 
 @NgModule({
   imports: [
@@ -27,10 +31,11 @@ import { ProjectDetailsModule } from './project-details/project-details.module';
     SectionsModule,
     ProjectListModule,
     ProjectDetailsModule,
+    ActivateDashboardModule,
+    ProjectsKpisModule
   ],
   declarations: [
     PagesComponent,
-    
     
   ],
 })

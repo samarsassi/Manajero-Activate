@@ -28,5 +28,8 @@ export class NavPageComponent {
   navigateToProjectList(): void {
     this.router.navigate(['pages/projectslist']);
   }
+  navigateToDash(): void {
+    this.router.navigate(['pages/activate-dashboard']);
+  }
 
 }

@@ -4,6 +4,7 @@ import { Observable, Subject } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { DiscoverPhase } from '../@core/data/DiscoverPhase';
 import { Projects } from '../@core/data/Projects';
+import { ProjectPreparation } from '../@core/data/project-preparation.model';
 
 @Injectable({
   providedIn: 'root'
@@ -40,4 +41,8 @@ export class ProjectsService {
     deleteProject(id: string): Observable<void> {
         return this.http.delete<void>(`${this.apiUrl}/delete/${id}`);
     }
+    
+    addPreperation(preparation: ProjectPreparation, id:string): Observable<Projects> {
+      return this.http.put<Projects>(`${this.apiUrl}/addProjectPrep/${id}`, preparation);
+  }
 }
